@@ -172,6 +172,150 @@
 .gs-n { width:16px; height:16px; border-radius:50%; background:var(--surface3); border:1px solid var(--brass-dim); color:var(--brass); font-size:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; font-weight:600; }
 
 /* ═══════════════════════════════════════
+   GUIDE DETAIL
+═══════════════════════════════════════ */
+.guide-detail { max-width:860px; margin:0 auto; }
+.guide-loading {
+  text-align:center; padding:60px 20px; color:var(--text-dim); font-size:13px;
+  font-family:'DM Sans',sans-serif;
+}
+.guide-back {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; color:var(--brass); cursor:pointer;
+  margin-bottom:20px; padding:6px 0;
+  font-family:'DM Sans',sans-serif; letter-spacing:0.04em;
+  transition:color .2s;
+}
+.guide-back:hover { color:var(--cream); }
+
+.guide-hero { margin-bottom:24px; position:relative; border-radius:var(--r); overflow:hidden; }
+.guide-hero img { width:100%; max-height:400px; object-fit:cover; display:block; }
+.guide-hero-caption {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:12px 18px;
+  background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  font-size:12px; color:rgba(240,232,213,0.8);
+}
+
+.guide-header {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-bottom:18px; gap:12px;
+}
+.guide-title {
+  font-family:'Playfair Display',serif; font-size:32px; font-weight:400;
+  color:var(--text); line-height:1.15;
+}
+.guide-subtitle {
+  font-size:13px; color:var(--text-dim); margin-top:4px;
+}
+
+.guide-qr {
+  display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;
+}
+.guide-qr-pill {
+  display:flex; flex-direction:column; gap:2px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r); padding:8px 14px;
+}
+.guide-qr-label {
+  font-size:8px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--text-dim);
+}
+.guide-qr-value {
+  font-size:13px; color:var(--text); font-weight:400;
+}
+
+.guide-section { margin-bottom:32px; }
+.guide-section-hdr {
+  display:flex; align-items:center; gap:10px;
+  padding-bottom:10px; margin-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.guide-section-icon { font-size:20px; }
+.guide-section-title {
+  font-family:'Playfair Display',serif; font-size:20px;
+  color:var(--text); font-weight:400;
+}
+.guide-section-body { display:flex; flex-direction:column; gap:14px; }
+
+.guide-text {
+  font-size:14px; line-height:1.7; color:var(--text-dim);
+}
+.guide-text strong { color:var(--text); font-weight:500; }
+
+.guide-img-wrap { border-radius:var(--r); overflow:hidden; border:1px solid var(--border); }
+.guide-img { width:100%; display:block; }
+.guide-img-caption {
+  padding:8px 14px; font-size:11px; color:var(--text-dim);
+  background:var(--surface);
+}
+
+.guide-steps { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px 20px; }
+.guide-steps-title {
+  font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--brass);
+  margin-bottom:12px;
+}
+.guide-step {
+  display:flex; gap:12px; align-items:flex-start; padding:8px 0;
+  border-bottom:1px solid var(--border2); font-size:13px; color:var(--text-dim);
+  line-height:1.5;
+}
+.guide-step:last-child { border-bottom:none; }
+.guide-step-n {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--surface3); border:1px solid var(--brass-dim);
+  color:var(--brass); font-size:10px; font-weight:600;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:1px;
+}
+
+.guide-callout {
+  display:flex; gap:12px; padding:14px 18px;
+  border-radius:var(--r); font-size:13px; line-height:1.6;
+}
+.guide-callout strong { font-weight:500; }
+.guide-callout-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+.guide-callout-warning {
+  background:rgba(196,148,58,0.08); border:1px solid rgba(196,148,58,0.25);
+  color:var(--text-dim);
+}
+.guide-callout-warning .guide-callout-icon { color:#c4943a; }
+.guide-callout-info {
+  background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.18);
+  color:var(--text-dim);
+}
+.guide-callout-info .guide-callout-icon { color:var(--brass); }
+
+.guide-table-wrap { overflow-x:auto; border-radius:var(--r); border:1px solid var(--border); }
+.guide-tbl { border-radius:var(--r); }
+
+.guide-checklist { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px 20px; }
+.guide-check-item {
+  display:flex; gap:10px; align-items:flex-start; padding:7px 0;
+  border-bottom:1px solid var(--border2); font-size:13px; color:var(--text-dim);
+}
+.guide-check-item:last-child { border-bottom:none; }
+.guide-check-box { color:var(--brass); font-size:14px; flex-shrink:0; }
+
+.guide-contacts { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:12px; }
+.guide-contact-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:16px 18px; transition:border-color .2s;
+}
+.guide-contact-card:hover { border-color:var(--card-hover); }
+.guide-contact-name { font-family:'Playfair Display',serif; font-size:16px; color:var(--text); margin-bottom:3px; }
+.guide-contact-role { font-size:11px; color:var(--text-dim); margin-bottom:8px; }
+.guide-contact-line { font-size:12px; color:var(--text-dim); padding:2px 0; }
+
+.gc-has-guide .gc-top::after {
+  content:'View full guide \2192';
+  display:block; margin-top:10px;
+  font-size:11px; color:var(--brass); letter-spacing:0.04em;
+  font-family:'DM Sans',sans-serif;
+}
+
+/* ═══════════════════════════════════════
    INVENTORY
 ═══════════════════════════════════════ */
 .inv-controls { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
@@ -420,6 +564,19 @@
   .lightbox-nav { font-size:24px; padding:10px; }
   .lightbox-prev { left:4px; }
   .lightbox-next { right:4px; }
+
+  /* Guide detail */
+  .guide-title { font-size:24px; }
+  .guide-subtitle { font-size:12px; }
+  .guide-qr { gap:6px; }
+  .guide-qr-pill { padding:6px 10px; }
+  .guide-qr-value { font-size:12px; }
+  .guide-section-title { font-size:17px; }
+  .guide-text { font-size:13px; }
+  .guide-step { font-size:12px; }
+  .guide-callout { font-size:12px; padding:12px 14px; }
+  .guide-contacts { grid-template-columns:1fr; }
+  .guide-header { flex-direction:column; }
 }
 
 /* Small phones */
