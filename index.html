@@ -600,6 +600,110 @@ body::before {
 ::-webkit-scrollbar { width:6px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:3px; }
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  /* Topbar */
+  #topbar { padding:0 14px; height:50px; }
+  .brand-name { font-size:14px; }
+  .brand-sub { font-size:9px; }
+  .brand-crest { width:28px; height:28px; font-size:12px; }
+  .live-dot, #current-date { display:none; }
+  .theme-pill { padding:3px 8px 3px 6px; }
+
+  /* Nav tabs — horizontal scroll */
+  #navtabs { top:50px; padding:0 10px; gap:0; }
+  .tab { padding:11px 12px; font-size:10px; gap:5px; }
+  .tab-icon { font-size:12px; }
+
+  /* App shell */
+  #app { padding-top:92px; }
+  .px { padding-left:14px; padding-right:14px; }
+  .page { padding-bottom:30px; }
+
+  /* Hero */
+  .hero { height:200px; }
+  .hero-title { font-size:28px !important; }
+  .hero-eyebrow { font-size:9px !important; }
+  .hero-pills { gap:8px !important; flex-wrap:wrap !important; }
+  .hero-pill { padding:5px 10px !important; font-size:10px !important; }
+  .hero-content { padding:0 14px 18px !important; }
+
+  /* KPI row: 2×2 grid */
+  .g4 { grid-template-columns:1fr 1fr; gap:10px; }
+  .stat { padding:14px 16px; }
+  .stat-v { font-size:26px; }
+  .stat-ey { font-size:8px; }
+  .stat-s { font-size:10px; }
+
+  /* Dashboard masonry: single column */
+  .dash-grid { grid-template-columns:1fr; gap:12px; }
+  .dash-col { gap:12px; }
+
+  /* All 3-col and 2-col grids: single column on mobile */
+  .g3 { grid-template-columns:1fr; gap:12px; }
+  .g2 { grid-template-columns:1fr; gap:12px; }
+
+  /* Cards */
+  .ch { padding:11px 14px; }
+  .ch h3 { font-size:9px; }
+  .cb { padding:14px; }
+
+  /* Page headers */
+  .ph { flex-direction:column; align-items:flex-start; gap:12px; }
+  .ph-left h2 { font-size:24px; }
+  .ph-left p { font-size:12px; }
+
+  /* Calendar month grid */
+  .month-grid { grid-template-columns:1fr; }
+
+  /* Interactive calendar */
+  .ical-controls { flex-direction:column; align-items:stretch; }
+  .ical-grid { grid-template-columns:repeat(7,1fr); }
+
+  /* Guide cards: single column */
+  .gc-title { font-size:15px; }
+
+  /* Room cards (decoration): single column */
+  .room-grid { grid-template-columns:1fr; }
+
+  /* Equipment table: horizontal scroll */
+  .inv-controls { flex-direction:column; align-items:stretch; }
+  #inv-filters { gap:4px; }
+  .flt { font-size:9px; padding:6px 10px; }
+  .tbl { font-size:11px; }
+  .tbl th, .tbl td { padding:8px 10px; }
+  .inv-thumb { width:26px; height:26px; font-size:13px; }
+
+  /* Suppliers: single column */
+  .supplier-card { padding:14px; }
+
+  /* Gallery */
+  .gallery-grid { grid-template-columns:1fr 1fr; }
+
+  /* Tour */
+  .tour-ph { min-height:280px; }
+  .tour-url-input { width:100%; }
+  .tour-meta-row { grid-template-columns:1fr; gap:10px; padding:14px 16px; }
+
+  /* Tables: make scrollable horizontally */
+  .cb0 { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+
+  /* Lightbox */
+  .lightbox img { max-width:96vw; max-height:70vh; }
+  .lightbox-nav { font-size:24px; padding:10px; }
+  .lightbox-prev { left:4px; }
+  .lightbox-next { right:4px; }
+}
+
+/* Small phones */
+@media(max-width:400px){
+  .g4 { grid-template-columns:1fr; }
+  .gallery-grid { grid-template-columns:1fr; }
+  .tab { padding:10px 8px; font-size:9px; }
+}
 </style>
 </head>
 <body>

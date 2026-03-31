@@ -1,0 +1,35 @@
+{
+  "categories": ["All", "Estate", "Grounds", "Equipment"],
+  "images": [
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/estate-aerial.jpg",
+      "caption": "Aerial view of Stanners Hill House and grounds",
+      "category": "Estate",
+      "date": "2024-06"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/terrace-topiary-sunset.jpg",
+      "caption": "Rear terrace with topiary planters and garden furniture",
+      "category": "Grounds",
+      "date": "2025"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/grounds-sunset.jpg",
+      "caption": "Sunset over the grounds looking south",
+      "category": "Grounds",
+      "date": "2025"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/garden-hedges-patio.jpg",
+      "caption": "Formal hedging, conifers and sandstone patio",
+      "category": "Grounds",
+      "date": "2025"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/tool-shed.jpg",
+      "caption": "Garden tool shed with hand tools",
+      "category": "Equipment",
+      "date": "2025"
+    }
+  ]
+}

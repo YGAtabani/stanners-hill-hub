@@ -1,0 +1,479 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Stanners Hill House//Estate Hub//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Stanners Hill House
+X-WR-TIMEZONE:Europe/London
+BEGIN:VTIMEZONE
+TZID:Europe/London
+BEGIN:STANDARD
+DTSTART:19701025T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0000
+TZNAME:GMT
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:19700329T010000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZOFFSETFROM:+0000
+TZOFFSETTO:+0100
+TZNAME:BST
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260106
+SUMMARY:[Maintenance] Inspect fencing & boundary structures
+DESCRIPTION:Walk all boundary fencing. Check for storm damage\, loose posts\, broken rails. Report issues to Wesson Fencing.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260107
+SUMMARY:[Maintenance] Check generator fuel & service log
+DESCRIPTION:Monthly visual check — fuel level\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260108
+SUMMARY:[Systems] Pool cover check · water chemistry
+DESCRIPTION:Inspect winter cover for damage or pooling water. Test water chemistry — pH\, chlorine\, alkalinity.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260112
+SUMMARY:[Grounds] Plan spring programme with Landscape Dreams
+DESCRIPTION:Annual planning meeting with Landscape Dreams. Review mowing schedule (46 visits)\, planting plan\, and seasonal tasks.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260119
+SUMMARY:[Grounds] Check rose bed supports & ties
+DESCRIPTION:Walk all rose beds. Firm up stakes\, replace broken ties. Check for winter dieback on hybrid teas.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260202
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260209
+SUMMARY:[Grounds] Prune roses — hybrid teas & floribundas
+DESCRIPTION:Hard prune all hybrid tea and floribunda roses to outward-facing buds\, 15-20cm above ground. Remove dead and crossing wood. Apply mycorrhizal fungi to cuts.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260210
+SUMMARY:[Grounds] Prune ornamental shrubs
+DESCRIPTION:Late-winter prune of deciduous ornamental shrubs. Shape up\, remove dead wood\, thin congested growth.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260211
+SUMMARY:[Maintenance] Tractor battery check — Clifton Turf
+DESCRIPTION:Both John Deere tractors — check battery condition\, charge if needed. Contact Clifton Turf for any replacements.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260216
+SUMMARY:[Systems] Pre-season pool equipment inspection
+DESCRIPTION:Lagoon Pools — inspect pump\, filter\, heater\, plumbing before spring opening. Check for frost damage.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260218
+SUMMARY:[Grounds] Box topiary inspection for moth signs
+DESCRIPTION:Inspect all box (Buxus) topiary and hedging for overwintering box tree moth pupae\, webbing\, and caterpillar damage. Mark affected areas.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260223
+SUMMARY:[Grounds] Mulch rose beds
+DESCRIPTION:Apply 5-8cm layer of well-rotted manure or garden compost around all rose beds. Keep clear of stems.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260225
+SUMMARY:[Grounds] First light mow if conditions allow
+DESCRIPTION:If ground is dry and grass growing\, first cut of the year at highest setting. Edge main lawn borders.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260302
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260309
+SUMMARY:[Grounds] Feed yew hedges — balanced fertiliser
+DESCRIPTION:Apply balanced NPK fertiliser (e.g. Growmore) to base of all yew (Taxus) hedging. Water in if dry.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260316
+SUMMARY:[Systems] Irrigation spring start-up — Wetlands
+DESCRIPTION:Contact Wetlands Irrigation (£390). Spring commissioning — check all zone heads\, set controller\, test coverage. System runs Mar–Oct.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260323
+SUMMARY:[Grounds] Lawn spring feed — 10 acres
+DESCRIPTION:Apply spring/summer lawn fertiliser to all lawn areas (~10 acres). High nitrogen feed to promote growth. Coordinate with Landscape Dreams.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260323
+SUMMARY:[Grounds] First rose feed of the season
+DESCRIPTION:Apply granular rose fertiliser around all beds. Water in thoroughly. Repeat every 4-6 weeks through summer.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260325
+SUMMARY:[Pest] Xentari / caterpillar spray for box — 1st round
+DESCRIPTION:First Xentari (Bacillus thuringiensis) spray on all box topiary and hedging. Treat systematically\, cover upper and lower leaf surfaces. Repeat every 2-6 weeks until October.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260325
+SUMMARY:[Pest] Weed treatment — cycle 1 of 8
+DESCRIPTION:Selective herbicide treatment across lawn areas and hard surfaces. Repeat every 3 weeks through the season.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260330
+SUMMARY:[Grounds] Begin regular mowing programme
+DESCRIPTION:Weekly mowing now begins. Main field: 14 mowing visits (Landscape Dreams £840/visit). Formal areas more frequent.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260401
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260406
+SUMMARY:[Grounds] Plant feed granules — first application
+DESCRIPTION:Apply slow-release granular feed to all ornamental beds\, borders\, and container plants.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260407
+SUMMARY:[Pest] Slug spray for plants — begin cycle
+DESCRIPTION:Apply slug pellets or nematode treatment around rose beds\, hostas\, and vulnerable borders. Repeat monthly.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260408
+SUMMARY:[Pest] Seaweed feed for hedges — first dose
+DESCRIPTION:Liquid seaweed foliar feed on all box and yew hedging. Strengthens against disease and pest stress. Repeat every 6-8 weeks.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260413
+SUMMARY:[Systems] Pool opening — full chemical balance
+DESCRIPTION:Lagoon Pools: remove winter cover\, inspect pump & filter\, full chemical balance. pH 7.2–7.6\, chlorine\, alkalinity. Annual maintenance £3\,984.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260415
+SUMMARY:[Pest] Weed treatment — cycle 2
+DESCRIPTION:Selective herbicide treatment — second cycle. Focus on any breakthrough weeds in lawns and paths.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260420
+SUMMARY:[Grounds] Rose beds — first aphid check
+DESCRIPTION:Inspect all rose beds for greenfly/blackfly. Treat with insecticidal soap or contact spray if present.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260501
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260504
+SUMMARY:[Pest] Box caterpillar — repeat Xentari spray
+DESCRIPTION:Second Xentari application on all box. Target first generation emerging caterpillars. Check for webbing and frass.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260506
+SUMMARY:[Pest] Weed treatment — cycle 3
+DESCRIPTION:Selective herbicide — third cycle. Continue 3-week rotation.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260511
+SUMMARY:[Grounds] Plant feed granules — repeat
+DESCRIPTION:Second application of slow-release granular feed to all ornamental beds and borders.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260511
+SUMMARY:[Grounds] Rose feed — second application
+DESCRIPTION:Granular rose fertiliser around all beds. Water in. Peak growing season — roses need consistent feeding.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260518
+SUMMARY:[Maintenance] Lift inspection — Kinetic (1st visit)
+DESCRIPTION:Kinetic Lift — first quarterly inspection. 4 visits/year at £400. May · Aug · Nov · Dec.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260520
+SUMMARY:[Grounds] First box topiary clip
+DESCRIPTION:First clip of all box (Buxus) topiary and formal hedging. Shape up\, maintain clean geometric forms. Do after nesting season.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260527
+SUMMARY:[Pest] Weed treatment — cycle 4
+DESCRIPTION:Selective herbicide — fourth cycle. Monitor for resistant weeds.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260601
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260601
+SUMMARY:[Grounds] Summer lawn feed
+DESCRIPTION:Apply summer lawn fertiliser across all 10 acres. Lower nitrogen\, balanced formulation for sustained growth.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260603
+SUMMARY:[Pest] Box tree moth — 2nd generation spray
+DESCRIPTION:Xentari spray — targeting second generation box tree moth caterpillars. Peak activity in June. Thorough coverage essential.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260605
+SUMMARY:[Pest] Slug spray — repeat cycle
+DESCRIPTION:Monthly slug treatment around vulnerable beds. Focus on rose beds and damp borders.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260608
+SUMMARY:[Grounds] Seaweed feed hedges — repeat
+DESCRIPTION:Liquid seaweed foliar feed on all box and yew hedging. Second application of the season.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260610
+SUMMARY:[Grounds] Deadhead roses — begin regular cycle
+DESCRIPTION:Begin regular deadheading programme across all rose beds. Remove spent blooms to encourage repeat flowering. Continue weekly through summer.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260615
+SUMMARY:[Systems] Pool weekly shock treatment begins
+DESCRIPTION:Begin weekly pool shock treatment for peak summer. Maintain pH 7.2-7.6. Test\, skim surface\, brush\, backwash.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260617
+SUMMARY:[Pest] Weed treatment — cycle 5
+DESCRIPTION:Selective herbicide — fifth cycle. Continue 3-week rotation through summer.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260622
+SUMMARY:[Grounds] Yew hedge — first main clip
+DESCRIPTION:First major clip of all yew (Taxus) formal hedging. After bird nesting season. Maintain clean flat tops and vertical faces. This is the primary annual shape.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260623
+SUMMARY:[Maintenance] Lubricate gates — hinges and tracks
+DESCRIPTION:Citygate Automation — 6-monthly lubrication of electric gate hinges\, tracks\, and moving parts. Check motor housing for water ingress.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260629
+SUMMARY:[Grounds] Rose feed — third application
+DESCRIPTION:Granular rose fertiliser. Last major feed before reducing in late summer. Tomato feed as liquid supplement.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260701
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260706
+SUMMARY:[Pest] Xentari — repeat (6-week cycle)
+DESCRIPTION:Xentari spray — continue 6-week cycle on all box. Monitor for fresh caterpillar activity and webbing.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260707
+SUMMARY:[Pest] Weed treatment — cycle 6
+DESCRIPTION:Selective herbicide — sixth cycle. Spot-treat persistent weeds.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260708
+SUMMARY:[Pest] Slug spray — repeat
+DESCRIPTION:Monthly slug treatment. Focus on damp shaded borders and rose beds.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260713
+SUMMARY:[Grounds] Plant feed granules — midsummer application
+DESCRIPTION:Third application of slow-release granular feed to ornamental beds.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260715
+SUMMARY:[Maintenance] Irrigation mid-season check
+DESCRIPTION:Wetlands Irrigation — mid-season audit. Check all zone heads for blockage\, adjust controller settings for summer demand.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260727
+SUMMARY:[Pest] Weed treatment — cycle 7
+DESCRIPTION:Selective herbicide — seventh cycle. Weed growth slowing in midsummer heat.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260801
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260803
+SUMMARY:[Pest] Box moth — 3rd generation treatment
+DESCRIPTION:Xentari spray — third generation box tree moth. Late summer is often the most damaging generation. Treat all box thoroughly.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260805
+SUMMARY:[Grounds] Seaweed hedge feed — third application
+DESCRIPTION:Liquid seaweed foliar feed on all box and yew hedging. Supports recovery from clipping and pest treatment.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260810
+SUMMARY:[Grounds] Second box topiary clip
+DESCRIPTION:Second clip of all box topiary and formal hedging. Tighten geometric shapes before autumn. Last clip of the year for box.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260817
+SUMMARY:[Grounds] Yew hedge — second clip
+DESCRIPTION:Second and final clip of yew formal hedging. Clean up any regrowth since June. Maintain sharp\, formal profile through winter.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260817
+SUMMARY:[Pest] Weed treatment — cycle 8 (final)
+DESCRIPTION:Final selective herbicide treatment of the season. Last application before autumn.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260818
+SUMMARY:[Maintenance] Lift inspection — Kinetic (2nd visit)
+DESCRIPTION:Kinetic Lift — second quarterly inspection.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260820
+SUMMARY:[Grounds] Rose beds — reduce feeding
+DESCRIPTION:Stop granular feeding of roses. Switch to potash-rich feed only to harden growth for winter. Continue deadheading.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260824
+SUMMARY:[Grounds] Kitchen garden harvest & maintenance
+DESCRIPTION:Peak harvest season. Maintain kitchen garden beds\, succession sowing where appropriate.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260901
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260907
+SUMMARY:[Grounds] Lawn autumn feed — 10 acres
+DESCRIPTION:Apply autumn/winter lawn fertiliser across all lawns. High potash\, low nitrogen to strengthen roots for winter.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260907
+SUMMARY:[Grounds] Lawn scarify and aerate
+DESCRIPTION:Scarify main lawn areas to remove thatch. Hollow-tine aerate compacted areas. Overseed any bare patches. Critical autumn task for 10-acre lawn.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260914
+SUMMARY:[Pest] Final weed treatment of season
+DESCRIPTION:Last application of selective herbicide. Target any remaining broadleaf weeds before winter dormancy.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260914
+SUMMARY:[Pest] Final caterpillar / box spray
+DESCRIPTION:Final Xentari application of the season. Monitor for late-season caterpillar activity. Last spray before winter.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260921
+SUMMARY:[Systems] Begin pool wind-down · cover prep
+DESCRIPTION:Reduce chemical programme. Prepare winter cover. Check pool house equipment for storage.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260921
+SUMMARY:[Systems] Septic tank — annual emptying
+DESCRIPTION:Caroline's Effluent — annual septic tank emptying (£260). Check soakaway for saturation. Log date for records.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260928
+SUMMARY:[Grounds] Stop deadheading roses — allow hips
+DESCRIPTION:Stop deadheading roses. Allow rose hips to form for winter interest and to signal dormancy to the plants.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261001
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261005
+SUMMARY:[Grounds] Leaf blowing — weekly programme begins
+DESCRIPTION:Begin weekly leaf clearance programme across all 10 acres. Focus on lawns\, paths\, and around hedging bases.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261005
+SUMMARY:[Grounds] Final plant feed of season
+DESCRIPTION:Last application of granular feed to ornamental beds before winter dormancy.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261012
+SUMMARY:[Systems] Irrigation winterisation — Wetlands
+DESCRIPTION:Wetlands Irrigation — drain all lines\, blow out system\, protect controller and valves from frost. Must complete before first hard frost.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261019
+SUMMARY:[Systems] Pool closing — full winter prep
+DESCRIPTION:Lagoon Pools: lower water level\, add winterising chemicals\, fit winter cover. Store pool house equipment. Final inspection.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261019
+SUMMARY:[Grounds] Tidy rose beds for winter
+DESCRIPTION:Remove fallen leaves from rose beds (disease prevention). Light tidy but do NOT hard prune — save that for February.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261026
+SUMMARY:[Grounds] Final mowing — reduce frequency
+DESCRIPTION:Reduce mowing to fortnightly. Raise cutting height. Weather-dependent — may be final cuts of the season.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261101
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261102
+SUMMARY:[Grounds] Leaf blowing — intensive period
+DESCRIPTION:Peak leaf fall. Increase clearance to 2-3 times per week. Keep lawns\, gutters\, and paths clear.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261109
+SUMMARY:[Grounds] Plant spring bulbs
+DESCRIPTION:Plant tulips\, daffodils\, crocus in beds and borders. Naturalise bulbs in lawn areas where appropriate.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261109
+SUMMARY:[Grounds] Mulch rose beds for winter
+DESCRIPTION:Apply thick layer of bark mulch or garden compost around rose beds. Protects roots from frost.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261116
+SUMMARY:[Maintenance] Lift inspection — Kinetic (3rd visit)
+DESCRIPTION:Kinetic Lift — third quarterly inspection.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261116
+SUMMARY:[Maintenance] Generator annual service
+DESCRIPTION:Book annual generator service before winter. Full inspection\, oil change\, filter replacement\, load test.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261123
+SUMMARY:[Grounds] Plant bare-root roses
+DESCRIPTION:November is ideal for planting bare-root roses. Prepare holes with compost and mycorrhizal fungi.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261201
+SUMMARY:[Maintenance] Generator monthly test run
+DESCRIPTION:Monthly visual check — fuel\, oil\, coolant. 30-min test run under partial load.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261207
+SUMMARY:[Grounds] Final leaf clearance
+DESCRIPTION:Last major leaf clearance sweep. Clear all lawn areas\, borders\, gutters\, and hedge bases before Christmas.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261214
+SUMMARY:[Maintenance] Lift inspection — Kinetic (4th visit)
+DESCRIPTION:Kinetic Lift — fourth quarterly inspection. Final visit of the year.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261214
+SUMMARY:[Maintenance] Annual gate maintenance — Citygate
+DESCRIPTION:Citygate Automation — annual maintenance (£576). Full service\, lubricate hinges and tracks\, check motor\, safety tests.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261221
+SUMMARY:[Maintenance] Year-end equipment service review
+DESCRIPTION:Review all equipment service logs. Book any outstanding services for January. Check ride-on mower\, tractors\, blowers\, strimmer.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261221
+SUMMARY:[Grounds] Protect tender plants for winter
+DESCRIPTION:Wrap tender plants with fleece. Check greenhouse heaters. Move vulnerable container plants to sheltered positions.
+END:VEVENT
+END:VCALENDAR
