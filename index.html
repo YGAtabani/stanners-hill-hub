@@ -249,9 +249,12 @@ body::before {
 ═══════════════════════════════════════ */
 .g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
-.g3.top { align-items:start; }
 .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .gcol { display:flex; flex-direction:column; gap:14px; }
+
+/* Dashboard masonry: 3 columns, cards pack upward */
+.dash-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.dash-col { display:flex; flex-direction:column; gap:14px; }
 
 /* ═══════════════════════════════════════
    CARD
@@ -720,80 +723,6 @@ body::before {
       </div>
 
     </div><!-- /dash-grid -->
-    <!-- OLD ROW 2 REMOVED - content moved to dash-grid above -->
-    <div style="display:none">
-
-      <!-- Donut + spend breakdown -->
-      <div class="card">
-        <div class="ch"><h3>Budget by Category</h3></div>
-        <div class="cb">
-          <div style="display:flex;align-items:center;gap:18px">
-            <div class="chart-wrap" style="width:120px;height:120px;flex-shrink:0">
-              <canvas id="donutChart" width="120" height="120"></canvas>
-              <div class="chart-label"><div class="cv" id="budget-total"></div><div class="cl">total</div></div>
-            </div>
-            <div style="flex:1">
-              <div style="display:flex;flex-direction:column;gap:7px" id="budget-legend"></div>
-            </div>
-          </div>
-          <hr class="divl">
-          <div style="display:flex;flex-direction:column;gap:10px" id="spend-status"></div>
-        </div>
-      </div>
-
-      <!-- Horizontal bar chart — spend by supplier -->
-      <div class="card">
-        <div class="ch"><h3>Spend by Supplier</h3><span class="badge b-dim">Top 6</span></div>
-        <div class="cb">
-          <canvas id="barChart" height="200"></canvas>
-        </div>
-      </div>
-
-      <!-- Right col: works status mini table -->
-      <div class="gcol">
-        <div class="card">
-          <div class="ch"><h3>Works Status</h3><span class="badge b-amber" id="works-count"></span></div>
-          <div class="cb0">
-            <table class="tbl">
-              <thead><tr><th>Item</th><th>Cost</th><th>Status</th></tr></thead>
-              <tbody id="works-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /g3 -->
-
-    <!-- ROW 3: Systems status gauges + This month + Estate facts -->
-    <div class="g3">
-
-      <!-- Systems health radial gauges -->
-      <div class="card">
-        <div class="ch"><h3>Systems Health</h3></div>
-        <div class="cb" id="systems-gauges"></div>
-      </div>
-
-      <!-- This month tasks -->
-      <div class="card">
-        <div class="ch">
-          <h3>This Month</h3>
-          <span style="font-family:'Playfair Display',serif;font-size:14px;color:var(--brass);font-style:italic;text-transform:none;letter-spacing:0" id="this-month-name"></span>
-        </div>
-        <div style="padding:12px 16px" id="this-month-tasks"></div>
-        <div style="padding:0 16px 14px">
-          <canvas id="monthTaskChart" height="80"></canvas>
-        </div>
-      </div>
-
-      <!-- Estate facts -->
-      <div class="card">
-        <div class="ch"><h3>Estate Quick Facts</h3></div>
-        <div class="cb" style="padding:0 20px">
-          <ul class="rl" id="estate-facts"></ul>
-        </div>
-      </div>
-
-    </div><!-- /g3 row 3 -->
 
   </div><!-- /px -->
 </div><!-- /dashboard -->
@@ -1399,8 +1328,7 @@ async function getYearEvents(year) {
   const events = await fetchCalEvents(timeMin, timeMax);
   for (let m = 0; m < 12; m++) {
     const key = year + '-' + String(m + 1).padStart(2, '0');
-    const prefix = year + '-' + String(m + 1).padStart(2, '0');
-    CAL_CACHE.set(key, events.filter(e => e.start.startsWith(prefix)));
+    CAL_CACHE.set(key, events.filter(e => e.start.startsWith(key)));
   }
   return events;
 }

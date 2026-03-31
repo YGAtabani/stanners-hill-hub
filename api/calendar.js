@@ -1,3 +1,7 @@
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 const CATEGORY_MAP = {
   'grounds':     'dg',
   'maintenance': 'dm',
@@ -7,11 +11,11 @@ const CATEGORY_MAP = {
 
 function parseCategory(summary) {
   const match = summary.match(/^\[(\w+)\]\s*/);
-  if (!match) return { category: 'other', title: summary };
+  if (!match) return { category: 'other', title: escapeHtml(summary) };
   const prefix = match[1].toLowerCase();
   return {
     category: CATEGORY_MAP[prefix] || 'other',
-    title: summary.replace(match[0], ''),
+    title: escapeHtml(summary.replace(match[0], '')),
   };
 }
 
@@ -35,6 +39,15 @@ function formatEvent(item) {
 }
 
 export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    return res.status(204).end();
+  }
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const apiKey = process.env.GOOGLE_CALENDAR_API_KEY;
   const calendarId = process.env.GOOGLE_CALENDAR_ID;
 
