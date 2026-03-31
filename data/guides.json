@@ -17,6 +17,7 @@
     "title": "Swimming Pool",
     "sub": "Lagoon Pools \u00b7 51 ft outdoor",
     "status": { "cls": "b-blue", "label": "On Hold" },
+    "detailId": "pool",
     "steps": [
       "April: remove cover, inspect pump & filter",
       "Balance chemistry: pH 7.2\u20137.6, chlorine, alkalinity",

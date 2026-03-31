@@ -323,7 +323,9 @@ async function initApp() {
   const gg = document.getElementById('guides-grid');
   gg.innerHTML = guides.map(g => {
     const steps = g.steps.map((s, i) => `<div class="gc-step"><div class="gs-n">${i + 1}</div>${s}</div>`).join('');
-    return `<div class="gc"><div class="gc-top"><span class="gc-icon">${g.icon}</span><div class="gc-title">${g.title}</div><div class="gc-sub">${g.sub}</div><div class="gc-status"><span class="badge ${g.status.cls}">${g.status.label}</span></div></div><div class="gc-steps">${steps}</div></div>`;
+    const hasGuide = g.detailId ? ' gc-has-guide' : '';
+    const click = g.detailId ? ` onclick="openGuide('${g.detailId}')"` : '';
+    return `<div class="gc${hasGuide}"${click}><div class="gc-top"><span class="gc-icon">${g.icon}</span><div class="gc-title">${g.title}</div><div class="gc-sub">${g.sub}</div><div class="gc-status"><span class="badge ${g.status.cls}">${g.status.label}</span></div></div><div class="gc-steps">${steps}</div></div>`;
   }).join('');
 
   // ── INVENTORY
