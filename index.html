@@ -1533,17 +1533,22 @@ async function initApp() {
     return null;
   });
 
-  const [sheetRows, equipRows, estate, worksFallback, calData, guides, inventoryFallback, suppliers, decoration, gallery] = await Promise.all([
+  const calYearPromise = getYearEvents(now.getFullYear()).catch(e => {
+    console.warn('Calendar API unavailable:', e.message);
+    return null;
+  });
+
+  const [sheetRows, equipRows, estate, worksFallback, guides, inventoryFallback, suppliers, decoration, gallery, calEvents] = await Promise.all([
     worksSheetPromise,
     equipSheetPromise,
     loadJSON('data/estate.json'),
     loadJSON('data/works.json'),
-    loadJSON('data/calendar.json'),
     loadJSON('data/guides.json'),
     loadJSON('data/inventory.json'),
     loadJSON('data/suppliers.json'),
     loadJSON('data/decoration.json'),
     loadJSON('data/gallery.json'),
+    calYearPromise,
   ]);
 
   // Live sheet → derive works data dynamically; fallback → static JSON
@@ -1601,21 +1606,36 @@ async function initApp() {
     `<li><span class="k">${f.key}</span><span class="v">${f.value}</span></li>`
   ).join('');
 
-  // ── CALENDAR
+  // ── CALENDAR (from Google Calendar API)
   const fc = document.getElementById('full-calendar');
   const mi = now.getMonth();
-  fc.innerHTML = calData.map((mo, i) => {
-    const isNow = i === mi;
-    const tasks = mo.tasks.map(t => `<div class="mc-task"><div class="mc-dot ${t.category}"></div>${t.task}</div>`).join('');
-    return `<div class="mc${isNow ? ' now' : ''}"><div class="mch"><span class="mc-name">${mo.month}${isNow ? '<span style="font-size:9px;color:var(--brass);margin-left:8px;font-family:\'DM Sans\',sans-serif;letter-spacing:0.12em;text-transform:uppercase"> Now</span>' : ''}</span><span class="mc-season">${mo.season}</span></div><div class="mc-tasks">${tasks}</div></div>`;
-  }).join('');
+  if (calEvents) {
+    console.log('\u2713 Calendar data live from Google Calendar (' + calEvents.length + ' events)');
+    const SEASON_MAP = {0:'Winter',1:'Winter',2:'Early Spring',3:'Spring',4:'Spring',5:'Early Summer',6:'Summer',7:'Summer',8:'Early Autumn',9:'Autumn',10:'Late Autumn',11:'Winter'};
+    fc.innerHTML = MONTHS.map((month, i) => {
+      const prefix = now.getFullYear() + '-' + String(i + 1).padStart(2, '0');
+      const monthEvents = calEvents.filter(e => e.start.startsWith(prefix));
+      const isNow = i === mi;
+      const tasks = monthEvents.map(e => '<div class="mc-task"><div class="mc-dot ' + e.category + '"></div>' + e.title + '</div>').join('');
+      const empty = monthEvents.length === 0 ? '<div style="font-size:11px;color:var(--text-dim);padding:4px 0">No events</div>' : '';
+      return '<div class="mc' + (isNow ? ' now' : '') + '"><div class="mch"><span class="mc-name">' + month + (isNow ? '<span style="font-size:9px;color:var(--brass);margin-left:8px;font-family:\'DM Sans\',sans-serif;letter-spacing:0.12em;text-transform:uppercase"> Now</span>' : '') + '</span><span class="mc-season">' + SEASON_MAP[i] + '</span></div><div class="mc-tasks">' + (tasks || empty) + '</div></div>';
+    }).join('');
 
-  // ── THIS MONTH (dashboard)
-  const thisMonth = calData[mi];
-  document.getElementById('this-month-name').textContent = thisMonth.month;
-  document.getElementById('this-month-tasks').innerHTML = thisMonth.tasks.map(t =>
-    `<div class="mc-task"><div class="mc-dot ${t.category}"></div>${t.task}</div>`
-  ).join('');
+    // Dashboard this-month
+    const thisMonthPrefix = now.getFullYear() + '-' + String(mi + 1).padStart(2, '0');
+    const thisMonthEvents = calEvents.filter(e => e.start.startsWith(thisMonthPrefix));
+    document.getElementById('this-month-name').textContent = MONTHS[mi];
+    document.getElementById('this-month-tasks').innerHTML = thisMonthEvents.length > 0
+      ? thisMonthEvents.map(e => '<div class="mc-task"><div class="mc-dot ' + e.category + '"></div>' + e.title + '</div>').join('')
+      : '<div style="font-size:11px;color:var(--text-dim);padding:4px 0">No events this month</div>';
+  } else {
+    fc.innerHTML = '<div class="cal-error">Unable to load calendar \u2014 check back shortly</div>';
+    document.getElementById('this-month-name').textContent = MONTHS[mi];
+    document.getElementById('this-month-tasks').innerHTML = '<div style="font-size:11px;color:var(--text-dim);padding:4px 0">Calendar unavailable</div>';
+  }
+
+  // Interactive calendar initial render
+  renderInteractiveCal();
 
   // ── GUIDES
   const gg = document.getElementById('guides-grid');
