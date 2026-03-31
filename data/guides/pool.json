@@ -1,0 +1,331 @@
+{
+  "id": "pool",
+  "title": "Swimming Pool",
+  "subtitle": "Heritage Pools · 10m × 6m · 90m³ · Outdoor Skimmer",
+  "status": { "cls": "b-blue", "label": "On Hold" },
+  "hero": {
+    "src": "",
+    "caption": "51 ft outdoor swimming pool — Stanners Hill House"
+  },
+  "quickRef": [
+    { "label": "Pool Size", "value": "10m × 6m" },
+    { "label": "Capacity", "value": "90m³" },
+    { "label": "Cover", "value": "Eclipse / Coverstar" },
+    { "label": "Filter", "value": "Sand — Multiport Valve" },
+    { "label": "Built", "value": "2001" },
+    { "label": "Builder", "value": "Heritage Pools" }
+  ],
+  "sections": [
+    {
+      "title": "Overview",
+      "icon": "🏊",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "The pool at Stanners Hill House is a 10m × 6m (51 ft) outdoor swimming pool with a capacity of 90m³. It was built in 2001 by Heritage Pools Ltd and uses a skimmer-type design. The pool house includes a 27'8 × 16'1 bar area, a 7'8 × 6'0 plant room, and shower and changing facilities."
+        },
+        {
+          "type": "text",
+          "content": "The pool is fitted with an Eclipse automatic slatted safety cover powered by a Coverstar 230V hydraulic motor with 24V keyswitch control. Filtration is handled by a sand filter with a multiport valve."
+        },
+        {
+          "type": "table",
+          "headers": ["Component", "Brand / Detail", "Status"],
+          "rows": [
+            ["Pool shell", "Heritage Pools — 10m × 6m, skimmer", "Confirmed"],
+            ["Safety cover", "Eclipse / Coverstar — hydraulic slatted", "Confirmed"],
+            ["Sand filter", "With multiport valve", "Brand TBC"],
+            ["Pump", "With strainer basket", "Brand TBC"],
+            ["Heater", "Type unknown (gas / heat pump?)", "TBC"],
+            ["Lighting", "Underwater — type unknown", "TBC"],
+            ["Chemical dosing", "Manual chlorine (no bromine)", "Confirmed"],
+            ["Frost thermostat", "Overrides pump in cold weather", "Confirmed"],
+            ["Time clocks", "Pump and heater scheduling", "Confirmed"]
+          ]
+        },
+        {
+          "type": "info",
+          "content": "Equipment details marked TBC will be updated once the plant room is inspected and labels are photographed."
+        }
+      ]
+    },
+    {
+      "title": "Safety Cover",
+      "icon": "🛡️",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "The pool has an Eclipse automatic slatted safety cover driven by a Coverstar 230V hydraulic motor. It is operated via a 24V keyswitch — turn to CLOSE to cover the pool, turn to OPEN to uncover. The cover must be fully retracted before anyone enters the water."
+        },
+        {
+          "type": "steps",
+          "title": "Opening the pool cover",
+          "items": [
+            "Check that nobody is in or near the pool",
+            "Turn the keyswitch to OPEN",
+            "Wait for the cover to fully retract into the housing",
+            "Confirm the cover is completely stored before swimming"
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Closing the pool cover",
+          "items": [
+            "Ensure everyone is out of the pool",
+            "Remove any large debris from the water surface",
+            "Turn the keyswitch to CLOSE",
+            "Wait for the cover to fully close across the pool"
+          ]
+        },
+        {
+          "type": "warning",
+          "content": "Never operate the cover with people in the pool. The cover is not a substitute for fencing or supervision. Keep the keyswitch inaccessible to children."
+        },
+        {
+          "type": "info",
+          "content": "Water level must be maintained 10–15 cm below the coping stone. Too low and the cover sags and collects debris. Too high and the cover floats and jams in the guide rails."
+        },
+        {
+          "type": "steps",
+          "title": "Cleaning the cover",
+          "items": [
+            "Hose down the cover surface monthly to remove debris",
+            "Every 3–6 months, wash with mild dishwashing liquid and water",
+            "Never use a pressure washer or abrasive cleaners",
+            "Flush the guide rails with a garden hose monthly to clear dirt",
+            "Apply silicone spray to guide rails every 3 months"
+          ]
+        },
+        {
+          "type": "info",
+          "content": "<strong>No bromine.</strong> Bromine damages the Eclipse cover slats. Use chlorine-based sanitiser only."
+        },
+        {
+          "type": "info",
+          "content": "After shock treating the pool, leave the cover <strong>open for 24 hours</strong> before closing it."
+        },
+        {
+          "type": "text",
+          "content": "<strong>Warranty:</strong> 20-year mechanism, 7-year fabric (3 years full + 4 pro-rated), 2-year rope."
+        }
+      ]
+    },
+    {
+      "title": "Water Chemistry",
+      "icon": "🧪",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "Test the water at least twice a week during swimming season (daily in heavy use). Use a DPD test kit or photometer for accurate readings. Adjust chemicals in this order: alkalinity first, then pH, then calcium hardness, then chlorine."
+        },
+        {
+          "type": "table",
+          "headers": ["Parameter", "Target Range", "Danger Zone"],
+          "rows": [
+            ["pH", "7.2 – 7.4", "< 7.0 corrosive · > 7.8 scale, chlorine ineffective"],
+            ["Free chlorine", "1.0 – 3.0 ppm", "< 1.0 bacteria risk · > 5.0 irritation"],
+            ["Combined chlorine", "< 0.5 ppm", "> 0.5 — shock treatment needed"],
+            ["Total alkalinity", "100 – 150 ppm", "< 80 pH unstable · > 200 cloudy water"],
+            ["Calcium hardness", "200 – 400 ppm", "< 150 corrosive · > 500 scale deposits"],
+            ["Cyanuric acid", "30 – 50 ppm", "> 100 chlorine lock (partial drain needed)"]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": ["Action", "Chemical", "Dose for 90m³"],
+          "rows": [
+            ["Raise chlorine 1 ppm", "Sodium hypochlorite (14%)", "~600 ml"],
+            ["Shock to 10 ppm", "Sodium hypochlorite (14%)", "~6 litres"],
+            ["Lower pH by 0.2", "Sodium bisulphate (dry acid)", "~500 g"],
+            ["Raise pH by 0.2", "Sodium carbonate (soda ash)", "~300 g"],
+            ["Raise alkalinity 10 ppm", "Sodium bicarbonate", "~1.5 kg"],
+            ["Raise calcium 10 ppm", "Calcium chloride", "~1.0 kg"]
+          ]
+        },
+        {
+          "type": "warning",
+          "content": "Never mix chemicals — especially acid and chlorine (produces toxic chlorine gas). Always add chemicals to water, never water to chemicals. Wear gloves and goggles."
+        }
+      ]
+    },
+    {
+      "title": "Filtration & Backwash",
+      "icon": "⚙️",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "The pool uses a sand filter with a multiport valve. Water is pumped through graded silica sand which traps dirt and debris. As the filter loads up, the pressure gauge rises. When it reads 8–10 psi above the clean baseline, it's time to backwash."
+        },
+        {
+          "type": "table",
+          "headers": ["Valve Position", "Use"],
+          "rows": [
+            ["Filter", "Normal daily operation"],
+            ["Backwash", "Reverse flush dirty sand (run until water runs clear, ~2–3 min)"],
+            ["Rinse", "Resettle sand after backwash (run ~1 min)"],
+            ["Waste", "Bypass filter, drain to waste (for vacuuming heavy debris)"],
+            ["Recirculate", "Bypass filter, return to pool (for distributing chemicals)"],
+            ["Closed", "All flow stopped (for maintenance only)"]
+          ]
+        },
+        {
+          "type": "warning",
+          "content": "ALWAYS turn the pump OFF before changing the multiport valve position. Changing it while the pump is running will damage the spider gasket and valve mechanism."
+        },
+        {
+          "type": "steps",
+          "title": "Backwash procedure",
+          "items": [
+            "Turn off the pump",
+            "Turn the multiport valve to BACKWASH",
+            "Turn on the pump",
+            "Run for 2–3 minutes until the sight glass runs clear",
+            "Turn off the pump",
+            "Turn the multiport valve to RINSE",
+            "Turn on the pump and run for 30–60 seconds",
+            "Turn off the pump",
+            "Turn the multiport valve back to FILTER",
+            "Turn on the pump — note the new clean pressure reading",
+            "Top up the pool water level (backwashing uses 200–500 litres)"
+          ]
+        },
+        {
+          "type": "info",
+          "content": "Backwash roughly every 1–2 weeks in summer, or whenever the pressure gauge reads 8–10 psi above the clean starting pressure. In autumn with heavy leaf fall, you may need to backwash more often."
+        },
+        {
+          "type": "text",
+          "content": "<strong>Sand replacement:</strong> Every 5–7 years. Signs it's needed: filter cycles getting shorter, poor water clarity despite correct chemistry, sand appearing in the pool (broken laterals). Consider upgrading to glass filter media (AFM) for finer filtration and longer life."
+        }
+      ]
+    },
+    {
+      "title": "Weekly Maintenance",
+      "icon": "📋",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "During swimming season (typically May–September), complete these tasks weekly. In peak summer with heavy use, test water chemistry 2–3 times per week."
+        },
+        {
+          "type": "checklist",
+          "title": "Weekly checklist",
+          "items": [
+            "Test water chemistry (pH, free chlorine, alkalinity)",
+            "Skim the surface with a leaf net",
+            "Brush walls, floor, steps and waterline",
+            "Vacuum the pool floor",
+            "Clean the pump strainer basket",
+            "Check water level is at mid-skimmer height",
+            "Backwash the filter if pressure is up",
+            "Empty skimmer baskets",
+            "Check pump is running normally (no unusual noise)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Seasonal Schedule",
+      "icon": "🌟",
+      "blocks": [
+        {
+          "type": "text",
+          "content": "The pool follows a seasonal cycle: open in spring, maintain through summer, winterise in autumn, and check through winter."
+        },
+        {
+          "type": "steps",
+          "title": "Spring opening (April)",
+          "items": [
+            "Remove winter cover — clean, dry, fold and store it",
+            "Inspect the pool for cracks, staining, or damage",
+            "Remove any freeze plugs from skimmers and return jets",
+            "Refill pool to mid-skimmer level",
+            "Reinstall drain plugs on pump, filter and heater",
+            "Check pump lid O-ring — replace if cracked",
+            "Fill strainer pot with water to assist priming",
+            "Set multiport valve to FILTER, open all valves",
+            "Switch on the pump — check for prime and leaks",
+            "Backwash the filter for 3–5 minutes, then rinse",
+            "Test water chemistry and adjust (alkalinity → pH → calcium → chlorine)",
+            "Shock treat the pool (raise free chlorine to 10–20 ppm)",
+            "Run the pump 24 hours/day for the first 3–5 days",
+            "Brush and vacuum all surfaces",
+            "Wait at least 2 weeks before swimming — allow chemistry to stabilise"
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "Autumn winterising (October)",
+          "items": [
+            "Wait until water temperature drops below 15°C",
+            "Shock dose the pool and adjust pH to 7.2–7.4",
+            "Add a long-life algaecide",
+            "Lower water level 30 cm below the skimmers",
+            "Backwash the filter thoroughly",
+            "Drain all equipment (pump, filter, heater) or ensure frost thermostat is active",
+            "Fit freeze plugs (Gizzmos) into skimmers",
+            "Cover the pool with a winter debris cover",
+            "If keeping power on: confirm frost thermostat is active (triggers pump at 3–4°C)"
+          ]
+        },
+        {
+          "type": "warning",
+          "content": "Never fully drain the pool. The shell relies on the weight of water to resist hydrostatic uplift from groundwater. Surrey's clay soils have high water tables — an empty pool can crack or float out of the ground."
+        },
+        {
+          "type": "info",
+          "content": "Mid-winter check: Falcon Pools offer a visit (£68 + VAT) to test electrics, frost thermostat, pump, chemistry, backwash filter, and check the cover pit is dry."
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "icon": "🔧",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": ["Symptom", "Likely Cause", "Fix"],
+          "rows": [
+            ["Cloudy water", "Low chlorine, high pH, or dirty filter", "Shock dose, lower pH to 7.2, backwash filter"],
+            ["Green water (algae)", "Insufficient chlorine or poor circulation", "Brush all surfaces, shock to 20 ppm, run pump 24/7, backwash repeatedly"],
+            ["Strong chlorine smell", "High combined chlorine (chloramines)", "Shock dose to 10× the combined chlorine reading"],
+            ["Pump losing prime", "Air leak on suction side, low water level", "Check pump lid O-ring, top up water to mid-skimmer"],
+            ["Pump noisy / vibrating", "Worn bearings, blocked impeller", "Call pool engineer — do not run a noisy pump"],
+            ["Filter pressure stays high", "Sand needs replacing or valve leaking", "Try extended backwash. If no improvement, call engineer"],
+            ["Cover stops mid-travel", "Obstruction, wrong water level, torque limiter", "Check for debris in rails, check water level 10–15 cm below coping"],
+            ["Cover motor hums but won't move", "Drive belt or gear issue", "Do not force — call cover service engineer"],
+            ["Water level dropping fast", "Possible leak (normal evaporation is 3–6 mm/day)", "Do the bucket test: fill a bucket on the step, compare levels after 24 hours"],
+            ["Scale deposits (white crust)", "High calcium + high pH", "Lower pH to 7.2, add scale inhibitor, check calcium hardness"]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Contacts",
+      "icon": "☎️",
+      "blocks": [
+        {
+          "type": "contacts",
+          "items": [
+            {
+              "name": "Falcon Pools Ltd",
+              "role": "Pool servicing & maintenance",
+              "phone": "01932 353666",
+              "email": "service@falconpools.co.uk"
+            },
+            {
+              "name": "Heritage Pools Ltd",
+              "role": "Original pool builder (2001)",
+              "phone": "",
+              "email": ""
+            }
+          ]
+        },
+        {
+          "type": "info",
+          "content": "Current maintenance contractor details to be added once confirmed."
+        }
+      ]
+    }
+  ]
+}
