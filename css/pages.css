@@ -17,7 +17,7 @@
   background:linear-gradient(to top, rgba(15,26,16,0.95) 0%, rgba(15,26,16,0.4) 50%, transparent 100%);
 }
 [data-theme="light"] .hero-photo::after {
-  background:linear-gradient(to top, rgba(242,237,226,0.95) 0%, rgba(242,237,226,0.4) 50%, transparent 100%);
+  background:linear-gradient(to top, rgba(242,237,226,0.92) 0%, rgba(242,237,226,0.15) 45%, transparent 100%);
 }
 
 .hero-content {
@@ -37,7 +37,7 @@
 }
 .hero-title em { font-style:italic; color:var(--brass); }
 .hero-pills {
-  display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;
+  display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; justify-content:center;
 }
 .hero-pill {
   display:flex; align-items:center; gap:8px;

@@ -21,6 +21,13 @@
       "description": "11.15 acre estate boundary based on Ordnance Survey. Shows main house, The Bungalow, stables, tennis court, woodland and disused pit.",
       "category": "Site Plans",
       "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/ot-edge-of-planter.png",
+      "title": "Landscape Site Plan — Construction Details",
+      "description": "Proposed part site plan by W.L.A showing garden layouts, terraces, planting areas, retaining walls, external lighting positions (in red), and construction details.",
+      "category": "Grounds",
+      "date": "W.L.A"
     }
   ]
 }

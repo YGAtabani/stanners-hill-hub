@@ -207,6 +207,43 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight') navLightbox(e, 1);
 });
 
+// ═══ PROPERTY PLANS
+let plansAll = [];
+let activePlanCat = 'All';
+
+function renderPlans(plans) {
+  const grid = document.getElementById('plans-grid');
+  if (!plans.length) {
+    grid.innerHTML = '<div class="plans-empty"><span class="plans-empty-icon">▦</span>No plans match this filter</div>';
+    return;
+  }
+  grid.innerHTML = plans.map(p =>
+    `<div class="plan-card" onclick="openPlanLightbox('${p.src}','${p.title.replace(/'/g,"\\'")}')">
+      <img class="plan-thumb" src="${p.src}" alt="${p.title}" loading="lazy">
+      <div class="plan-info">
+        <div class="plan-title">${p.title}</div>
+        <div class="plan-desc">${p.description}</div>
+        <div class="plan-meta"><span class="plan-cat">${p.category}</span><span class="plan-date">${p.date || ''}</span></div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function openPlanLightbox(src, title) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-caption').textContent = title;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function filterPlans(btn, cat) {
+  activePlanCat = cat;
+  document.querySelectorAll('#plan-filters .flt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'All' ? plansAll : plansAll.filter(p => p.category === cat);
+  renderPlans(filtered);
+}
+
 // ═══════════════════════════════════════
 //   INIT APP — load data & render
 // ═══════════════════════════════════════
@@ -385,6 +422,17 @@ async function initApp() {
     return `<button class="flt${c === 'All' ? ' active' : ''}" onclick="filterGallery(this,'${c}')">${c} (${count})</button>`;
   }).join('');
   renderGallery(galData);
+
+  // ── PROPERTY PLANS
+  const plansData = await loadJSON('data/plans.json');
+  plansAll = plansData.plans || [];
+  const planCats = plansData.categories || ['All'];
+  document.getElementById('plan-count').textContent = plansAll.length + ' plan' + (plansAll.length !== 1 ? 's' : '');
+  document.getElementById('plan-filters').innerHTML = planCats.map(c => {
+    const count = c === 'All' ? plansAll.length : plansAll.filter(p => p.category === c).length;
+    return `<button class="flt${c === 'All' ? ' active' : ''}" onclick="filterPlans(this,'${c}')">${c} (${count})</button>`;
+  }).join('');
+  renderPlans(plansAll);
 
   // ── CHARTS (after data loaded)
   donutChart = new Chart(document.getElementById('donutChart'), {
