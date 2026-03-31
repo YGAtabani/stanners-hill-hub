@@ -249,6 +249,7 @@ body::before {
 ═══════════════════════════════════════ */
 .g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.g3.top { align-items:start; }
 .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .gcol { display:flex; flex-direction:column; gap:14px; }
 
@@ -653,7 +654,7 @@ body::before {
     <div class="g4 mb16" id="kpi-row"></div>
 
     <!-- ROW 2: Budget donut + Bar chart + Right col -->
-    <div class="g3 mb16">
+    <div class="g3 top mb16">
 
       <!-- Donut + spend breakdown -->
       <div class="card">
@@ -1302,6 +1303,48 @@ document.addEventListener('keydown', function(e) {
 async function loadJSON(path) {
   const res = await fetch(path);
   return res.json();
+}
+
+// ═══ CALENDAR API
+const CAL_CACHE = new Map();
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+async function fetchCalEvents(timeMin, timeMax) {
+  const res = await fetch(`/api/calendar?timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}`);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+
+async function getMonthEvents(year, month) {
+  const key = year + '-' + String(month + 1).padStart(2, '0');
+  if (CAL_CACHE.has(key)) return CAL_CACHE.get(key);
+  const timeMin = new Date(year, month, 1).toISOString();
+  const timeMax = new Date(year, month + 1, 0, 23, 59, 59).toISOString();
+  const events = await fetchCalEvents(timeMin, timeMax);
+  CAL_CACHE.set(key, events);
+  return events;
+}
+
+async function getYearEvents(year) {
+  const timeMin = new Date(year, 0, 1).toISOString();
+  const timeMax = new Date(year, 11, 31, 23, 59, 59).toISOString();
+  const events = await fetchCalEvents(timeMin, timeMax);
+  for (let m = 0; m < 12; m++) {
+    const key = year + '-' + String(m + 1).padStart(2, '0');
+    const prefix = year + '-' + String(m + 1).padStart(2, '0');
+    CAL_CACHE.set(key, events.filter(e => e.start.startsWith(prefix)));
+  }
+  return events;
+}
+
+function eventsByDate(events) {
+  const map = {};
+  events.forEach(e => {
+    if (!map[e.start]) map[e.start] = [];
+    map[e.start].push(e);
+  });
+  return map;
 }
 
 async function initApp() {
