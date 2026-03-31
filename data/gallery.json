@@ -1,6 +1,12 @@
 {
-  "categories": ["All", "Estate", "Grounds", "Equipment"],
+  "categories": ["All", "Estate", "Grounds", "Gardens", "Pool", "Equipment"],
   "images": [
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-front-driveway.png",
+      "caption": "Stanners Hill House — front elevation and gravel drive",
+      "category": "Estate",
+      "date": "Knight Frank"
+    },
     {
       "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/estate-aerial.jpg",
       "caption": "Aerial view of Stanners Hill House and grounds",
@@ -8,9 +14,63 @@
       "date": "2024-06"
     },
     {
-      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/terrace-topiary-sunset.jpg",
-      "caption": "Rear terrace with topiary planters and garden furniture",
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-aerial-wide.png",
+      "caption": "Aerial view — full estate with striped lawns",
+      "category": "Estate",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-aerial-south.png",
+      "caption": "Aerial from the south — house, paddocks and woodland",
+      "category": "Estate",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-house-walled-garden.png",
+      "caption": "Main house viewed from the walled garden",
+      "category": "Estate",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-entrance-rhododendrons.png",
+      "caption": "Main entrance gates with rhododendrons in bloom",
       "category": "Grounds",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-lion-gate.png",
+      "caption": "Lion statue and timber gates",
+      "category": "Grounds",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-striped-lawn.png",
+      "caption": "Striped lawn panorama looking south over Surrey",
+      "category": "Grounds",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-herbaceous-border.png",
+      "caption": "Herbaceous borders and seating with countryside views",
+      "category": "Gardens",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-walled-rose-garden.png",
+      "caption": "Walled rose garden with box hedging and sundial",
+      "category": "Gardens",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-terrace-topiary.png",
+      "caption": "Stone terrace with box topiary and dining area",
+      "category": "Gardens",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/terrace-topiary-sunset.jpg",
+      "caption": "Rear terrace with topiary planters at sunset",
+      "category": "Gardens",
       "date": "2025"
     },
     {
@@ -22,8 +82,32 @@
     {
       "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/garden-hedges-patio.jpg",
       "caption": "Formal hedging, conifers and sandstone patio",
-      "category": "Grounds",
+      "category": "Gardens",
       "date": "2025"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-pool-aerial.png",
+      "caption": "Pool house and swimming pool — aerial view",
+      "category": "Pool",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-pool-poolhouse.png",
+      "caption": "Swimming pool and pool house with loungers",
+      "category": "Pool",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-tennis-court.png",
+      "caption": "Tennis court surrounded by mature oaks",
+      "category": "Grounds",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/kf-stables.png",
+      "caption": "Stable yard and outbuildings",
+      "category": "Estate",
+      "date": "Knight Frank"
     },
     {
       "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/gallery/tool-shed.jpg",

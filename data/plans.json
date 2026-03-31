@@ -1,0 +1,26 @@
+{
+  "categories": ["All", "Floor Plans", "Site Plans", "Grounds", "Irrigation", "Electrical", "Security", "Drainage"],
+  "plans": [
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/plans/main-house-floorplan.png",
+      "title": "Main House — Floor Plans",
+      "description": "Ground, First & Second floor layouts. 6,861 sq ft + 483 sq ft garage. Includes entrance hall, drawing room, study, bar, kitchen/family room, 5 bedrooms, lift.",
+      "category": "Floor Plans",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/plans/outbuildings-floorplan.png",
+      "title": "Outbuildings — Floor Plans",
+      "description": "Cottage (756 sq ft): 2 bedrooms, kitchen, sitting room. Pool House (586 sq ft): bar area. Outbuildings (1,516 sq ft): 7 stables, tack room, 4 stores.",
+      "category": "Floor Plans",
+      "date": "Knight Frank"
+    },
+    {
+      "src": "https://wbwqtjeynci1wjl1.public.blob.vercel-storage.com/plans/site-plan.png",
+      "title": "Estate Site Plan",
+      "description": "11.15 acre estate boundary based on Ordnance Survey. Shows main house, The Bungalow, stables, tennis court, woodland and disused pit.",
+      "category": "Site Plans",
+      "date": "Knight Frank"
+    }
+  ]
+}
