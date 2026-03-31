@@ -446,6 +446,63 @@ body::before {
 .inv-controls { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
 #inv-filters { display:flex; gap:6px; flex-wrap:wrap; }
 
+/* ═══════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════ */
+.gallery-filters { display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
+.gallery-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px;
+}
+.gal-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  overflow:hidden; cursor:pointer; transition:all .25s; position:relative;
+}
+.gal-card:hover { border-color:var(--card-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.35); }
+.gal-img {
+  width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+  background:var(--surface2);
+}
+.gal-info { padding:10px 14px; }
+.gal-caption { font-size:12.5px; color:var(--text); line-height:1.4; }
+.gal-meta { font-size:10px; color:var(--text-dim); margin-top:3px; display:flex; justify-content:space-between; }
+.gal-empty {
+  grid-column:1/-1; text-align:center; padding:60px 20px;
+  color:var(--text-dim); font-size:13px;
+}
+.gal-empty-icon { font-size:40px; opacity:0.15; margin-bottom:12px; display:block; }
+
+/* lightbox */
+.lightbox {
+  display:none; position:fixed; inset:0; z-index:500;
+  background:rgba(0,0,0,0.92); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center; flex-direction:column;
+  cursor:pointer;
+}
+.lightbox.open { display:flex; animation:fadeUp .2s ease; }
+.lightbox img {
+  max-width:90vw; max-height:80vh; border-radius:var(--r);
+  box-shadow:0 0 60px rgba(0,0,0,0.5); cursor:default;
+}
+.lightbox-caption {
+  margin-top:14px; font-size:13px; color:rgba(240,232,213,0.7);
+  text-align:center; max-width:600px;
+}
+.lightbox-close {
+  position:absolute; top:20px; right:28px;
+  font-size:28px; color:rgba(240,232,213,0.5); cursor:pointer;
+  transition:color .2s; background:none; border:none; font-family:inherit;
+}
+.lightbox-close:hover { color:#f0e8d5; }
+.lightbox-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-size:32px; color:rgba(240,232,213,0.4); cursor:pointer;
+  background:none; border:none; padding:16px; transition:color .2s;
+}
+.lightbox-nav:hover { color:#f0e8d5; }
+.lightbox-prev { left:12px; }
+.lightbox-next { right:12px; }
+.gal-count { font-size:12px; color:var(--text-dim); }
+
 /* scrollbar */
 ::-webkit-scrollbar { width:6px; }
 ::-webkit-scrollbar-track { background:transparent; }
@@ -480,6 +537,7 @@ body::before {
   <div class="tab" onclick="show('systems',this)"><span class="tab-icon">⚙</span> Systems & Guides</div>
   <div class="tab" onclick="show('equipment',this)"><span class="tab-icon">⊞</span> Equipment</div>
   <div class="tab" onclick="show('decoration',this)"><span class="tab-icon">◫</span> Decoration</div>
+  <div class="tab" onclick="show('gallery',this)"><span class="tab-icon">◩</span> Gallery</div>
   <div class="tab" onclick="show('tour',this)"><span class="tab-icon">⬡</span> Virtual Tour</div>
   <div class="tab" onclick="show('suppliers',this)"><span class="tab-icon">☎</span> Suppliers</div>
 </div>
@@ -654,6 +712,34 @@ body::before {
 
 
 <!-- ════════════════════════════════════════
+     GALLERY
+════════════════════════════════════════ -->
+<div id="p-gallery" class="page">
+  <div class="px pt24">
+    <div class="ph">
+      <div class="ph-left">
+        <div class="eyebrow">Estate Photography</div>
+        <h2>Gallery</h2>
+        <p>Photos of the estate — works progress, seasonal views, flowers, interiors and more.</p>
+      </div>
+      <span class="gal-count" id="gal-count"></span>
+    </div>
+    <div class="gallery-filters" id="gal-filters"></div>
+    <div class="gallery-grid" id="gal-grid"></div>
+  </div>
+</div>
+
+<!-- Lightbox overlay -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(event,-1)">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(event,1)">&#8250;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════
      VIRTUAL TOUR
 ════════════════════════════════════════ -->
 <div id="p-tour" class="page">
@@ -744,6 +830,26 @@ const EQUIP_ICONS = {
   'Electrical': '🔌', 'Chemicals': '🧪', 'Storage': '📁', 'Other': '⊞'
 };
 
+const EQUIP_PHOTOS = {
+  'SHH-GE-014': 'photos/equipment/jd-x758.jpg',
+  'SHH-GE-011': 'photos/equipment/countax-c60.jpg',
+  'SHH-GE-012': 'photos/equipment/countax-c60.jpg',
+  'SHH-GE-077': 'photos/equipment/hayter-56-pro.png',
+  'SHH-GE-079': 'photos/equipment/hayter-41-pro.png',
+  'SHH-GE-061': 'photos/equipment/echo-pb8010.png',
+  'SHH-GE-018': 'photos/equipment/toro-proforce.jpg',
+  'SHH-GE-025': 'photos/equipment/echo-srm2620.jpg',
+  'SHH-GE-029': 'photos/equipment/echo-srm2620.jpg',
+  'SHH-GE-030': 'photos/equipment/echo-srm2620.jpg',
+  'SHH-GE-052': 'photos/equipment/stihl-gta26.jpg',
+};
+
+function equipThumb(id, cat) {
+  const p = EQUIP_PHOTOS[id];
+  if (p) return `<div class="inv-thumb" style="background:url('${p}') center/cover"></div>`;
+  return `<div class="inv-thumb">${EQUIP_ICONS[cat] || '⊞'}</div>`;
+}
+
 function equipCategory(cat) {
   if (!cat) return 'Other';
   const c = cat.toLowerCase();
@@ -788,9 +894,8 @@ function invStatusBadge(st) {
 function renderInv(data) {
   document.getElementById('inv-body').innerHTML = data.map(d => {
     const b = invStatusBadge(d.status);
-    const icon = EQUIP_ICONS[d.groupCategory] || '⊞';
     return `<tr>
-      <td><div class="inv-thumb">${icon}</div></td>
+      <td>${equipThumb(d.assetId, d.groupCategory)}</td>
       <td><div class="inv-item-main">${d.description}</div><div class="inv-item-sub">${d.brand}${d.model ? ' · ' + d.model : ''}</div></td>
       <td><span class="inv-id">${d.assetId}</span></td>
       <td style="text-align:center">${d.qty}</td>
@@ -1015,6 +1120,69 @@ async function fetchEquipSheet() {
     });
 }
 
+// ═══ GALLERY
+let galData = [];
+let galFiltered = [];
+let activeGalCat = 'All';
+let lbIndex = 0;
+
+function renderGallery(images) {
+  galFiltered = images;
+  const grid = document.getElementById('gal-grid');
+  if (!images.length) {
+    grid.innerHTML = '<div class="gal-empty"><span class="gal-empty-icon">◩</span>No photos yet — upload images to your Vercel Blob store and add URLs to <code>data/gallery.json</code></div>';
+    document.getElementById('gal-count').textContent = '0 photos';
+    return;
+  }
+  document.getElementById('gal-count').textContent = images.length + ' photo' + (images.length !== 1 ? 's' : '');
+  grid.innerHTML = images.map((img, i) =>
+    `<div class="gal-card" onclick="openLightbox(${i})">
+      <img class="gal-img" src="${img.src}" alt="${img.caption}" loading="lazy">
+      <div class="gal-info">
+        <div class="gal-caption">${img.caption}</div>
+        <div class="gal-meta"><span>${img.category}</span><span>${img.date || ''}</span></div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function filterGallery(btn, cat) {
+  activeGalCat = cat;
+  document.querySelectorAll('#gal-filters .flt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery(cat === 'All' ? galData : galData.filter(img => img.category === cat));
+}
+
+function openLightbox(i) {
+  lbIndex = i;
+  const img = galFiltered[i];
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-caption').textContent = img.caption + (img.date ? ' — ' + img.date : '');
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e.target.tagName === 'IMG') return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function navLightbox(e, dir) {
+  e.stopPropagation();
+  lbIndex = (lbIndex + dir + galFiltered.length) % galFiltered.length;
+  const img = galFiltered[lbIndex];
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-caption').textContent = img.caption + (img.date ? ' — ' + img.date : '');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+  if (e.key === 'ArrowLeft') navLightbox(e, -1);
+  if (e.key === 'ArrowRight') navLightbox(e, 1);
+});
+
 // ═══ DATA LOADING
 async function loadJSON(path) {
   const res = await fetch(path);
@@ -1032,7 +1200,7 @@ async function initApp() {
     return null;
   });
 
-  const [sheetRows, equipRows, estate, worksFallback, calData, guides, inventoryFallback, suppliers, decoration] = await Promise.all([
+  const [sheetRows, equipRows, estate, worksFallback, calData, guides, inventoryFallback, suppliers, decoration, gallery] = await Promise.all([
     worksSheetPromise,
     equipSheetPromise,
     loadJSON('data/estate.json'),
@@ -1042,6 +1210,7 @@ async function initApp() {
     loadJSON('data/inventory.json'),
     loadJSON('data/suppliers.json'),
     loadJSON('data/decoration.json'),
+    loadJSON('data/gallery.json'),
   ]);
 
   // Live sheet → derive works data dynamically; fallback → static JSON
@@ -1171,6 +1340,15 @@ async function initApp() {
     }
     return `<li><span class="k">${t.key}</span><span class="v">${t.value}</span></li>`;
   }).join('');
+
+  // ── GALLERY
+  galData = gallery.images || [];
+  const galCats = gallery.categories || ['All'];
+  document.getElementById('gal-filters').innerHTML = galCats.map(c => {
+    const count = c === 'All' ? galData.length : galData.filter(img => img.category === c).length;
+    return `<button class="flt${c === 'All' ? ' active' : ''}" onclick="filterGallery(this,'${c}')">${c} (${count})</button>`;
+  }).join('');
+  renderGallery(galData);
 
   // ── CHARTS (after data loaded)
   donutChart = new Chart(document.getElementById('donutChart'), {
