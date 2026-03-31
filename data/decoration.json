@@ -1,0 +1,66 @@
+{
+  "openQuestions": 3,
+  "rooms": [
+    {
+      "name": "Bar",
+      "stripeColor": "#8a5a2a",
+      "rows": [
+        { "label": "Wallpaper", "badgeClass": "b-amber", "badgeText": "Confirm with design" },
+        { "label": "Woodwork", "badgeClass": "b-amber", "badgeText": "Cream \u2014 code TBC" },
+        { "label": "Status", "badgeClass": "b-amber", "badgeText": "In Progress" }
+      ]
+    },
+    {
+      "name": "Office / Study",
+      "stripeColor": "#4a5a4a",
+      "rows": [
+        { "label": "Wallpaper", "badgeClass": "b-amber", "badgeText": "TBC" },
+        { "label": "Woodwork", "badgeClass": "b-amber", "badgeText": "Code TBC" },
+        { "label": "Status", "badgeClass": "b-amber", "badgeText": "In Progress" }
+      ]
+    },
+    {
+      "name": "Master Bedroom",
+      "stripeColor": "#c9a84c",
+      "rows": [
+        { "label": "Wallpaper", "badgeClass": "b-red", "badgeText": "\u26a0 Selection open" },
+        { "label": "Woodwork", "badgeClass": "b-amber", "badgeText": "TBC" },
+        { "label": "Status", "badgeClass": "b-blue", "badgeText": "Awaiting Design" }
+      ]
+    },
+    {
+      "name": "Kitchen",
+      "stripeColor": "#3a7a8a",
+      "rows": [
+        { "label": "Wallpaper", "badgeClass": "b-amber", "badgeText": "TBC" },
+        { "label": "Finish", "badgeClass": "b-amber", "badgeText": "Pending" },
+        { "label": "Status", "badgeClass": "b-blue", "badgeText": "On Hold" }
+      ]
+    },
+    {
+      "name": "Apartment",
+      "stripeColor": "#6a5a8a",
+      "rows": [
+        { "label": "Toilet Colour", "badgeClass": "b-red", "badgeText": "\u26a0 Gradient TBC" },
+        { "label": "Woodwork", "badgeClass": "b-amber", "badgeText": "TBC" },
+        { "label": "Status", "badgeClass": "b-blue", "badgeText": "Awaiting Design" }
+      ]
+    },
+    {
+      "name": "Reception / Living",
+      "stripeColor": "#7a6a5a",
+      "rows": [
+        { "label": "Paint Works", "badgeClass": "b-amber", "badgeText": "On-going" },
+        { "label": "Contractor", "badgeClass": null, "badgeText": "Albanian team" },
+        { "label": "Status", "badgeClass": "b-amber", "badgeText": "In Progress" }
+      ]
+    }
+  ],
+  "tracker": [
+    { "key": "Reference system", "value": "WP1 \u2192 WP? \u00b7 images in Google Sheets", "alert": false },
+    { "key": "\u26a0 Open", "value": "Master Bedroom \u2014 final wallpaper selection", "alert": true },
+    { "key": "\u26a0 Open", "value": "Cream woodwork paint codes \u2014 design team to confirm", "alert": true },
+    { "key": "\u26a0 Open", "value": "Apartment toilet colour / gradient \u2014 Beautiful Spaces", "alert": true },
+    { "key": "Contractor", "value": "RIO PRO via Daniel (Beautiful Spaces)", "alert": false }
+  ]
+}

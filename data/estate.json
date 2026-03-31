@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "eyebrow": "Estate Command Centre",
+    "title": "Stanners Hill",
+    "titleEmphasis": "House",
+    "pills": [
+      { "value": "11.15 ac", "label": "Total Estate" },
+      { "value": "6 bed", "label": "Principal House" },
+      { "value": "51 ft", "label": "Swimming Pool" },
+      { "value": "7", "label": "Stable Boxes" },
+      { "value": "\u00a3101k", "label": "Works Budget" }
+    ]
+  },
+  "facts": [
+    { "key": "Heating", "value": "Oil (no mains gas)" },
+    { "key": "Drainage", "value": "Private septic" },
+    { "key": "Generator", "value": "2-week full estate" },
+    { "key": "Council Tax", "value": "Band H \u2014 Surrey Heath" },
+    { "key": "EPC Rating", "value": "G" },
+    { "key": "Tenure", "value": "Freehold" },
+    { "key": "Acreage", "value": "11.15 acres" },
+    { "key": "Guide Price", "value": "\u00a37,500,000" }
+  ],
+  "systemsHealth": [
+    { "name": "Generator", "status": "OK", "label": "Active", "arc": 105.6, "color": "#4a7a4e", "textColor": "#7ac47e", "fontSize": 11 },
+    { "name": "Pool", "status": "Hold", "label": "On Hold", "arc": 44, "color": "#3a8a7a", "textColor": "#5abcaa", "fontSize": 9 },
+    { "name": "Irrigation", "status": "Hold", "label": "On Hold", "arc": 44, "color": "#3a8a7a", "textColor": "#5abcaa", "fontSize": 9 },
+    { "name": "Gates", "status": "Attn", "label": "Remedial", "arc": 70, "color": "#c9a84c", "textColor": "#c9a84c", "fontSize": 9 },
+    { "name": "Lift", "status": "Sched", "label": "Scheduled", "arc": 44, "color": "#3a8a7a", "textColor": "#5abcaa", "fontSize": 9 },
+    { "name": "Security", "status": "Pend", "label": "Pending", "arc": 30, "color": "#c45a3a", "textColor": "#e07050", "fontSize": 9 }
+  ]
+}

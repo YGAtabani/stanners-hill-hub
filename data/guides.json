@@ -1,0 +1,111 @@
+[
+  {
+    "icon": "\ud83d\udca7",
+    "title": "Garden Irrigation",
+    "sub": "Wetlands Irrigation \u00b7 Mar\u2013Oct",
+    "status": { "cls": "b-blue", "label": "On Hold" },
+    "steps": [
+      "Spring start-up \u2014 contact Wetlands (\u00a3390)",
+      "Check all zone heads for blockage or damage",
+      "Set controller: zones, duration, frequency",
+      "Mid-season audit in July",
+      "October: winterise before first frost"
+    ]
+  },
+  {
+    "icon": "\ud83c\udfca",
+    "title": "Swimming Pool",
+    "sub": "Lagoon Pools \u00b7 51 ft outdoor",
+    "status": { "cls": "b-blue", "label": "On Hold" },
+    "steps": [
+      "April: remove cover, inspect pump & filter",
+      "Balance chemistry: pH 7.2\u20137.6, chlorine, alkalinity",
+      "Weekly: test, skim surface, brush, backwash",
+      "Shock treatment weekly in peak summer",
+      "October: lower water, winterise, fit cover"
+    ]
+  },
+  {
+    "icon": "\u26a1",
+    "title": "Generator",
+    "sub": "Full estate \u00b7 2-week capacity",
+    "status": { "cls": "b-green", "label": "Active" },
+    "steps": [
+      "Monthly visual check \u2014 fuel, oil, coolant",
+      "Monthly test run: 30 min under partial load",
+      "Annual service \u2014 book November before winter",
+      "Power outage: confirm auto-start, monitor panel"
+    ]
+  },
+  {
+    "icon": "\ud83d\udeaa",
+    "title": "Electric Gates",
+    "sub": "Citygate Automation \u00b7 entrance",
+    "status": { "cls": "b-amber", "label": "Attention" },
+    "steps": [
+      "Annual maintenance \u2014 December (\u00a3576)",
+      "Check motor housing for water ingress after rain",
+      "Lubricate hinges and tracks every 6 months",
+      "Remedial works \u00a36,259 \u2014 pending approval"
+    ]
+  },
+  {
+    "icon": "\ud83d\udedd",
+    "title": "Passenger Lift",
+    "sub": "Kinetic Lift \u00b7 4 visits/year",
+    "status": { "cls": "b-blue", "label": "Scheduled" },
+    "steps": [
+      "1st visit \u2014 May",
+      "2nd visit \u2014 August",
+      "3rd visit \u2014 November",
+      "4th visit \u2014 December / January"
+    ]
+  },
+  {
+    "icon": "\ud83d\udd12",
+    "title": "Security Systems",
+    "sub": "Niche Security \u00b7 cameras, alarm",
+    "status": { "cls": "b-blue", "label": "Pending" },
+    "steps": [
+      "Main house alarm upgrade \u00a32,682 \u2014 pending",
+      "11-camera install \u00a37,050 \u2014 pending",
+      "Bungalow WiFi \u00a31,074 \u2014 pending",
+      "Lock replacement \u00a34,415 \u2014 pending"
+    ]
+  },
+  {
+    "icon": "\ud83c\udf3f",
+    "title": "Box Tree Treatment",
+    "sub": "Xentari \u00b7 caterpillar & moth",
+    "status": { "cls": "b-amber", "label": "Seasonal" },
+    "steps": [
+      "End March: first Xentari caterpillar spray",
+      "Every 2\u20136 weeks March\u2013October",
+      "Target generations: spring, summer, early autumn",
+      "Seaweed hedge feed alongside spray programme"
+    ]
+  },
+  {
+    "icon": "\u267b",
+    "title": "Septic Tank",
+    "sub": "Caroline\u2019s Effluent \u00b7 annual",
+    "status": { "cls": "b-green", "label": "Done" },
+    "steps": [
+      "Annual emptying \u2014 Caroline\u2019s Effluent (\u00a3260)",
+      "Check soakaway for saturation after heavy rain",
+      "Log emptying dates for planning records"
+    ]
+  },
+  {
+    "icon": "\ud83d\udcfa",
+    "title": "AV Systems",
+    "sub": "ATI \u00b7 full estate survey",
+    "status": { "cls": "b-blue", "label": "On Hold" },
+    "steps": [
+      "Full survey \u2014 ATI (\u00a3900)",
+      "Map all zones: house, pool house, cottage",
+      "Identify legacy wiring for replacement",
+      "Confirm speaker and screen inventory post-survey"
+    ]
+  }
+]

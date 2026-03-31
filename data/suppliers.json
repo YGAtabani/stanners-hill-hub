@@ -1,0 +1,17 @@
+[
+  { "category": "Property Management", "name": "WebsterHart", "rows": ["Coordinates all on-hold works", "Primary estate management"], "addContact": true },
+  { "category": "Garden & Grounds", "name": "Landscape Dreams", "rows": ["\u00a3840/visit \u00b7 46 visits/year", "Main field: 14 mowing visits"], "addContact": true },
+  { "category": "Interior Design", "name": "Beautiful Spaces", "rows": ["Design coordination (Daniel)", "Wallpaper & decoration spec"], "addContact": false },
+  { "category": "Interior Works", "name": "RIO PRO", "rows": ["Wallpaper, ceilings, woodwork", "Via Daniel (Beautiful Spaces)"], "addContact": true },
+  { "category": "Security", "name": "Niche Security", "rows": ["Cameras, alarm, WiFi", "Total pending: ~\u00a314,806"], "addContact": true },
+  { "category": "Gate Automation", "name": "Citygate Automation", "rows": ["Electric gate maintenance", "Annual service: December"], "addContact": true },
+  { "category": "Fencing", "name": "Wesson Fencing", "rows": ["Stable side & all-round", "Works complete \u2713"], "addContact": true },
+  { "category": "Exterior Cleaning", "name": "Moss Masters", "rows": ["Roof, surfaces, statues cleaned", "\u00a317,000 \u2014 complete \u2713"], "addContact": true },
+  { "category": "Irrigation", "name": "Wetlands Irrigation", "rows": ["Seasonal start & shutdown", "Formal lawns install pending"], "addContact": true },
+  { "category": "Pool", "name": "Lagoon Pools", "rows": ["Annual maintenance \u00a33,984", "Spring opening / autumn close"], "addContact": true },
+  { "category": "Garden Machinery", "name": "Clifton Turf", "rows": ["Tractor battery & service", "Via WebsterHart"], "addContact": true },
+  { "category": "Lift Services", "name": "Kinetic Lift", "rows": ["4 visits per year \u00b7 \u00a3400", "May \u00b7 Aug \u00b7 Nov \u00b7 Dec/Jan"], "addContact": true },
+  { "category": "Drainage", "name": "Caroline\u2019s Effluent", "rows": ["Septic tank emptying \u00b7 \u00a3260", "Annual service"], "addContact": true },
+  { "category": "Audio / Visual", "name": "ATI", "rows": ["Full AV survey \u00a3900", "Via WebsterHart"], "addContact": true },
+  { "category": "Electrical", "name": "Eng. Osman", "rows": ["Full electrical overhaul", "Via Mr. Fouad"], "addContact": true }
+]

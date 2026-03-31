@@ -1,0 +1,76 @@
+[
+  { "month": "January", "season": "Winter", "tasks": [
+    { "category": "dm", "task": "Inspect fencing & boundary structures" },
+    { "category": "dm", "task": "Check generator fuel & service log" },
+    { "category": "ds", "task": "Pool cover check \u00b7 water chemistry" },
+    { "category": "dg", "task": "Plan spring programme with Landscape Dreams" }
+  ]},
+  { "month": "February", "season": "Winter", "tasks": [
+    { "category": "dg", "task": "Prune roses & ornamental shrubs" },
+    { "category": "dm", "task": "Tractor battery check \u2014 Clifton Turf" },
+    { "category": "ds", "task": "Pre-season pool equipment inspection" },
+    { "category": "dg", "task": "Box topiary inspection for moth signs" }
+  ]},
+  { "month": "March", "season": "Early Spring", "tasks": [
+    { "category": "dg", "task": "Lawn spring feed (late March)" },
+    { "category": "dp", "task": "Xentari / caterpillar spray for box \u2014 1st round" },
+    { "category": "dp", "task": "Box tree moth spray \u2014 begin treatment" },
+    { "category": "ds", "task": "Irrigation spring start-up (Wetlands)" },
+    { "category": "dp", "task": "Weed treatment \u2014 every 3 weeks" }
+  ]},
+  { "month": "April", "season": "Spring", "tasks": [
+    { "category": "dg", "task": "Plant feed granules \u2014 first application" },
+    { "category": "dp", "task": "Slug spray for plants \u2014 begin cycle" },
+    { "category": "dp", "task": "Seaweed feed for hedges \u2014 first dose" },
+    { "category": "ds", "task": "Pool opening \u00b7 full chemical balance" },
+    { "category": "dg", "task": "Lawn mowing season begins" }
+  ]},
+  { "month": "May", "season": "Spring", "tasks": [
+    { "category": "dp", "task": "Box caterpillar \u2014 repeat spray" },
+    { "category": "dp", "task": "Weed treatment \u2014 3rd cycle" },
+    { "category": "dg", "task": "Plant feed granules \u2014 repeat" },
+    { "category": "dm", "task": "Lift inspection \u2014 Kinetic (1st visit)" }
+  ]},
+  { "month": "June", "season": "Early Summer", "tasks": [
+    { "category": "dp", "task": "Box tree moth \u2014 2nd generation spray" },
+    { "category": "dp", "task": "Slug spray \u2014 repeat cycle" },
+    { "category": "dg", "task": "Seaweed feed hedges \u2014 repeat" },
+    { "category": "ds", "task": "Pool weekly shock treatment in heat" }
+  ]},
+  { "month": "July", "season": "Summer", "tasks": [
+    { "category": "dp", "task": "Xentari \u2014 repeat (6-week cycle)" },
+    { "category": "dp", "task": "Weed treatment \u2014 continue" },
+    { "category": "dg", "task": "Plant feed granules" },
+    { "category": "dm", "task": "Irrigation mid-season check" }
+  ]},
+  { "month": "August", "season": "Summer", "tasks": [
+    { "category": "dp", "task": "Box moth \u2014 3rd generation treatment" },
+    { "category": "dg", "task": "Seaweed hedge feed" },
+    { "category": "dm", "task": "Lift inspection \u2014 Kinetic (2nd visit)" },
+    { "category": "dg", "task": "Kitchen garden harvest & maintenance" }
+  ]},
+  { "month": "September", "season": "Early Autumn", "tasks": [
+    { "category": "dg", "task": "Lawn autumn feed" },
+    { "category": "dp", "task": "Final weed treatment of season" },
+    { "category": "dp", "task": "Final caterpillar / box spray" },
+    { "category": "ds", "task": "Begin pool wind-down \u00b7 cover prep" }
+  ]},
+  { "month": "October", "season": "Autumn", "tasks": [
+    { "category": "dg", "task": "Leaf blowing \u2014 weekly programme" },
+    { "category": "dg", "task": "Final plant feed of season" },
+    { "category": "ds", "task": "Irrigation winterisation \u2014 Wetlands" },
+    { "category": "ds", "task": "Pool closing \u2014 full winter prep" }
+  ]},
+  { "month": "November", "season": "Late Autumn", "tasks": [
+    { "category": "dg", "task": "Leaf blowing \u2014 intensive period" },
+    { "category": "dg", "task": "Planting spring bulbs" },
+    { "category": "dm", "task": "Lift inspection \u2014 Kinetic (3rd visit)" },
+    { "category": "dm", "task": "Generator annual test run" }
+  ]},
+  { "month": "December", "season": "Winter", "tasks": [
+    { "category": "dg", "task": "Final leaf clearance" },
+    { "category": "dm", "task": "Lift inspection \u2014 Kinetic (4th visit)" },
+    { "category": "dm", "task": "Annual gate maintenance \u2014 Citygate" },
+    { "category": "dm", "task": "Year-end equipment service review" }
+  ]}
+]

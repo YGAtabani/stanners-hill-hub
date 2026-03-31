@@ -1,0 +1,16 @@
+[
+  { "name": "John Deere Tractor (1)", "category": "Grounds", "location": "Outbuildings / Grounds", "contact": "Clifton Turf", "service": "Battery replacement \u2014 ongoing", "statusClass": "b-amber", "statusLabel": "In Progress" },
+  { "name": "John Deere Tractor (2)", "category": "Grounds", "location": "Outbuildings / Grounds", "contact": "Clifton Turf", "service": "Battery replacement \u2014 ongoing", "statusClass": "b-amber", "statusLabel": "In Progress" },
+  { "name": "Ride-on Mower", "category": "Grounds", "location": "Outbuildings", "contact": "Clifton Turf", "service": "Annual service", "statusClass": "b-green", "statusLabel": "Active" },
+  { "name": "Leaf Blower (backpack)", "category": "Grounds", "location": "Outbuildings", "contact": "\u2014", "service": "Annual check", "statusClass": "b-green", "statusLabel": "Active" },
+  { "name": "Strimmer", "category": "Grounds", "location": "Outbuildings", "contact": "\u2014", "service": "Annual check", "statusClass": "b-green", "statusLabel": "Active" },
+  { "name": "Pool Pump & Filter", "category": "Pool", "location": "Pool plant room", "contact": "Lagoon Pools", "service": "Inspect April on opening", "statusClass": "b-blue", "statusLabel": "Scheduled" },
+  { "name": "Pool Cover (winter)", "category": "Pool", "location": "Pool house", "contact": "Lagoon Pools", "service": "Inspect on fitting October", "statusClass": "b-green", "statusLabel": "Active" },
+  { "name": "Irrigation Controller", "category": "Grounds", "location": "Garden / outbuilding", "contact": "Wetlands Irrigation", "service": "Spring start-up required", "statusClass": "b-blue", "statusLabel": "Scheduled" },
+  { "name": "Security Camera System", "category": "Security", "location": "Main house \u00b7 perimeter", "contact": "Niche Security", "service": "Installation pending", "statusClass": "b-blue", "statusLabel": "Pending" },
+  { "name": "Alarm Panel", "category": "Security", "location": "Main house", "contact": "Niche Security", "service": "Upgrade pending", "statusClass": "b-blue", "statusLabel": "Pending" },
+  { "name": "Estate Generator", "category": "Mechanical", "location": "Generator building", "contact": "TBC", "service": "Annual service November", "statusClass": "b-green", "statusLabel": "Active" },
+  { "name": "Passenger Lift", "category": "Mechanical", "location": "Main house", "contact": "Kinetic Lift", "service": "Quarterly 4\u00d7/year", "statusClass": "b-blue", "statusLabel": "Scheduled" },
+  { "name": "Electric Gate Motors", "category": "Security", "location": "Main entrance", "contact": "Citygate Automation", "service": "Annual Dec \u00b7 remedial pending", "statusClass": "b-amber", "statusLabel": "Attention" },
+  { "name": "AV System", "category": "Mechanical", "location": "House \u00b7 pool house", "contact": "ATI", "service": "Full survey pending (\u00a3900)", "statusClass": "b-blue", "statusLabel": "Pending" }
+]
