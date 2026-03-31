@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanners Hill House — Estate Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+
+/* ═══════════════════════════════════════
+   THEME TOKENS
+═══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:         #0f1a10;
+  --surface:    #162018;
+  --surface2:   #1d2b1f;
+  --surface3:   #253228;
+  --border:     rgba(255,255,255,0.07);
+  --border2:    rgba(255,255,255,0.04);
+  --text:       #e8dfc8;
+  --text-dim:   #7a7060;
+  --text-mid:   #b0a080;
+  --cream:      #f0e8d5;
+  --cream-dim:  #a09070;
+  --topbar:     rgba(15,26,16,0.92);
+  --nav:        rgba(22,32,24,0.96);
+  --card-hover: rgba(201,168,76,0.2);
+  --noise:      0.35;
+  --chart-grid: rgba(255,255,255,0.06);
+}
+[data-theme="light"] {
+  --bg:         #f2ede2;
+  --surface:    #faf6ed;
+  --surface2:   #f0ead8;
+  --surface3:   #e6dfc8;
+  --border:     rgba(0,0,0,0.09);
+  --border2:    rgba(0,0,0,0.05);
+  --text:       #28200e;
+  --text-dim:   #8a7850;
+  --text-mid:   #5a4a28;
+  --cream:      #28200e;
+  --cream-dim:  #6a5838;
+  --topbar:     rgba(230,224,208,0.96);
+  --nav:        rgba(240,234,218,0.97);
+  --card-hover: rgba(139,100,30,0.3);
+  --noise:      0.12;
+  --chart-grid: rgba(0,0,0,0.06);
+}
+
+/* shared */
+:root {
+  --brass:     #c9a84c;
+  --brass-dim: #7a6230;
+  --green-lit: #4a7a4e;
+  --r: 5px;
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition: background .3s, color .3s;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: var(--noise); transition: opacity .3s;
+}
+
+/* ═══════════════════════════════════════
+   TOPBAR  (v2 preserved exactly, + toggle)
+═══════════════════════════════════════ */
+#topbar {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:58px;
+  background: var(--topbar);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,168,76,0.18);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 32px;
+  transition: background .3s;
+}
+.brand { display:flex; align-items:center; gap:16px; }
+.brand-crest {
+  width:34px; height:34px;
+  background: linear-gradient(135deg, var(--brass-dim), var(--brass));
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px;
+  box-shadow:0 0 16px rgba(201,168,76,0.3);
+}
+.brand-name {
+  font-family:'Playfair Display', serif;
+  font-size:17px; font-weight:500;
+  color:var(--cream); letter-spacing:0.02em;
+}
+.brand-sub {
+  font-size:11px; color:var(--cream-dim);
+  letter-spacing:0.1em; text-transform:uppercase; margin-top:1px;
+}
+.topbar-right { display:flex; align-items:center; gap:20px; }
+.live-dot {
+  display:flex; align-items:center; gap:6px;
+  font-size:11px; color:var(--green-lit); letter-spacing:0.08em;
+}
+.live-dot::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--green-lit); animation:pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,122,78,0.6)}
+  50%{opacity:.8;box-shadow:0 0 0 4px rgba(74,122,78,0)}
+}
+#current-date { font-size:12px; color:var(--cream-dim); letter-spacing:0.06em; }
+
+/* ── light/dark toggle ── */
+.theme-pill {
+  display:flex; align-items:center; gap:7px;
+  background: var(--surface2);
+  border:1px solid var(--border);
+  border-radius:20px; padding:4px 10px 4px 7px;
+  cursor:pointer; transition: background .25s;
+  user-select:none;
+}
+.theme-pill:hover { border-color: rgba(201,168,76,0.3); }
+.theme-pill-track {
+  width:30px; height:17px;
+  background: var(--surface3);
+  border-radius:9px; position:relative;
+  border:1px solid var(--border);
+  transition: background .25s;
+}
+.theme-pill-thumb {
+  position:absolute; top:2px; left:2px;
+  width:11px; height:11px; border-radius:50%;
+  background: var(--brass);
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
+}
+[data-theme="light"] .theme-pill-thumb { transform:translateX(13px); }
+.theme-pill-label { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream-dim); }
+
+/* ═══════════════════════════════════════
+   NAV TABS  (v2 preserved exactly)
+═══════════════════════════════════════ */
+#navtabs {
+  position:fixed; top:58px; left:0; right:0; z-index:190;
+  background: var(--nav);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:2px;
+  padding:0 32px; overflow-x:auto;
+  transition: background .3s;
+}
+#navtabs::-webkit-scrollbar { display:none; }
+.tab {
+  display:flex; align-items:center; gap:8px;
+  padding:14px 20px; font-size:12px; font-weight:500;
+  letter-spacing:0.06em; color:var(--text-dim);
+  cursor:pointer; border-bottom:2px solid transparent;
+  white-space:nowrap; transition:all .2s;
+  text-transform:uppercase; user-select:none;
+}
+.tab:hover { color:var(--cream); }
+.tab.active { color:var(--brass); border-bottom-color:var(--brass); }
+.tab-icon { font-size:14px; }
+
+/* ═══════════════════════════════════════
+   APP SHELL
+═══════════════════════════════════════ */
+#app { padding-top:110px; min-height:100vh; position:relative; z-index:1; }
+.page { display:none; padding:0 0 60px; }
+.page.active { display:block; animation:fadeUp .28s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.px { padding-left:36px; padding-right:36px; }
+.pt24 { padding-top:24px; }
+.mb16 { margin-bottom:16px; }
+.mb24 { margin-bottom:24px; }
+
+/* ═══════════════════════════════════════
+   HERO — real photo background
+═══════════════════════════════════════ */
+.hero {
+  position:relative; width:100%; height:340px; overflow:hidden;
+}
+.hero-photo {
+  position:absolute; inset:0;
+  background-image: url('https://images.knightfrank.com/resources/87c49745-6fe7-4c8f-b0c5-21f2dbf81234/2024062814300.jpg');
+  background-size:cover; background-position:center 40%;
+  transition: transform 8s ease;
+}
+.hero:hover .hero-photo { transform: scale(1.03); }
+/* multi-layer gradient: bottom-heavy for text, right side stays visible */
+.hero-photo::after {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to right, rgba(10,18,10,0.85) 0%, rgba(10,18,10,0.45) 55%, rgba(10,18,10,0.15) 100%),
+    linear-gradient(to top, rgba(10,18,10,0.6) 0%, transparent 50%);
+}
+[data-theme="light"] .hero-photo::after {
+  background:
+    linear-gradient(to right, rgba(20,30,15,0.82) 0%, rgba(20,30,15,0.40) 55%, rgba(20,30,15,0.1) 100%),
+    linear-gradient(to top, rgba(10,18,10,0.5) 0%, transparent 50%);
+}
+.hero-content {
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:36px 42px;
+}
+.hero-eyebrow {
+  font-size:10px; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--brass); margin-bottom:8px;
+}
+.hero-title {
+  font-family:'Playfair Display', serif;
+  font-size:52px; font-weight:400; line-height:1.0;
+  color:#f0e8d5; letter-spacing:0.01em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.hero-title em { font-style:italic; color:var(--brass); }
+.hero-pills {
+  display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;
+}
+.hero-pill {
+  display:flex; align-items:center; gap:8px;
+  background: rgba(15,26,16,0.7);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:3px; padding:7px 14px;
+}
+.hero-pill .pv {
+  font-family:'Playfair Display', serif;
+  font-size:17px; color:#f0e8d5; font-weight:400;
+}
+.hero-pill .pl { font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(240,232,213,0.5); margin-top:1px; }
+
+/* ═══════════════════════════════════════
+   GRIDS
+═══════════════════════════════════════ */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.gcol { display:flex; flex-direction:column; gap:14px; }
+
+/* ═══════════════════════════════════════
+   CARD
+═══════════════════════════════════════ */
+.card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r); overflow:hidden;
+  transition: border-color .2s, box-shadow .2s, background .3s;
+}
+.card:hover { border-color:var(--card-hover); }
+.ch {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px; border-bottom:1px solid var(--border);
+}
+.ch h3 { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-dim); font-weight:500; }
+.cb { padding:18px; }
+.cb0 { padding:0; }
+
+/* ═══════════════════════════════════════
+   STAT CARDS
+═══════════════════════════════════════ */
+.stat {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r); padding:20px 22px;
+  position:relative; overflow:hidden;
+  transition:all .22s;
+}
+.stat:hover { border-color:var(--card-hover); transform:translateY(-1px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.stat::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--brass),transparent); opacity:0; transition:opacity .3s; }
+.stat:hover::after { opacity:1; }
+.stat-ey { font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+.stat-v { font-family:'Playfair Display',serif; font-size:34px; font-weight:400; color:var(--text); line-height:1; }
+.stat-v sup { font-size:15px; }
+.stat-s { font-size:11px; color:var(--text-dim); margin-top:5px; }
+.stat-ico { position:absolute; top:16px; right:16px; font-size:22px; opacity:0.13; }
+
+/* ═══════════════════════════════════════
+   BADGES
+═══════════════════════════════════════ */
+.badge { font-size:9px; letter-spacing:0.09em; text-transform:uppercase; padding:3px 8px; border-radius:3px; font-weight:500; white-space:nowrap; display:inline-block; }
+.b-green { background:rgba(74,122,78,0.18);  color:#7ac47e; border:1px solid rgba(74,122,78,0.3); }
+.b-amber { background:rgba(196,148,58,0.18); color:#c4943a; border:1px solid rgba(196,148,58,0.3); }
+.b-red   { background:rgba(196,90,58,0.18);  color:#e07050; border:1px solid rgba(196,90,58,0.3); }
+.b-blue  { background:rgba(58,138,122,0.18); color:#5abcaa; border:1px solid rgba(58,138,122,0.3); }
+.b-dim   { background:rgba(128,128,128,0.1); color:var(--text-dim); border:1px solid var(--border); }
+
+/* ═══════════════════════════════════════
+   TABLE
+═══════════════════════════════════════ */
+.tbl { width:100%; border-collapse:collapse; font-size:12.5px; }
+.tbl th { padding:9px 16px; text-align:left; font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-dim); font-weight:500; border-bottom:1px solid var(--border); background:var(--surface2); }
+.tbl td { padding:11px 16px; border-bottom:1px solid var(--border2); color:var(--text-dim); vertical-align:middle; }
+.tbl td.s { color:var(--text); font-weight:400; }
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tr:hover td { background:rgba(128,128,128,0.04); }
+
+/* ═══════════════════════════════════════
+   ROW LIST
+═══════════════════════════════════════ */
+.rl { list-style:none; }
+.rl li { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid var(--border2); font-size:12.5px; }
+.rl li:last-child { border-bottom:none; }
+.rl .k { color:var(--text-dim); } .rl .v { color:var(--text); }
+
+/* ═══════════════════════════════════════
+   CHART CONTAINERS
+═══════════════════════════════════════ */
+.chart-wrap { position:relative; }
+.chart-label {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  text-align:center; pointer-events:none;
+}
+.chart-label .cv { font-family:'Playfair Display',serif; font-size:22px; color:var(--text); }
+.chart-label .cl { font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-top:2px; }
+
+/* ═══════════════════════════════════════
+   PROGRESS BARS
+═══════════════════════════════════════ */
+.prog { height:5px; background:var(--surface3); border-radius:3px; overflow:hidden; margin-top:5px; }
+.prog-f { height:100%; border-radius:3px; transition:width 1.4s cubic-bezier(.22,1,.36,1); }
+
+/* ═══════════════════════════════════════
+   GAUGE (radial arc)
+═══════════════════════════════════════ */
+.gauge-row { display:flex; gap:16px; justify-content:space-around; padding:8px 0; }
+.gauge-item { text-align:center; }
+.gauge-item svg { display:block; margin:0 auto; }
+.gauge-val { font-family:'Playfair Display',serif; font-size:14px; color:var(--text); margin-top:2px; }
+.gauge-lbl { font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); }
+
+/* ═══════════════════════════════════════
+   PAGE HEADER
+═══════════════════════════════════════ */
+.ph { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; }
+.ph-left .eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--brass); margin-bottom:5px; }
+.ph-left h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:var(--text); }
+.ph-left p { font-size:13px; color:var(--text-dim); margin-top:4px; line-height:1.5; }
+
+/* ═══════════════════════════════════════
+   CALENDAR
+═══════════════════════════════════════ */
+.month-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.mc { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; transition:border-color .2s; }
+.mc:hover { border-color:var(--card-hover); }
+.mc.now { border-color:rgba(201,168,76,0.4); }
+.mch { padding:11px 15px; background:var(--surface2); display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+.mc-name { font-family:'Playfair Display',serif; font-size:15px; color:var(--text); }
+.mc-season { font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); }
+.mc-tasks { padding:11px 15px; }
+.mc-task { display:flex; gap:8px; align-items:flex-start; padding:5px 0; border-bottom:1px solid var(--border2); font-size:12px; color:var(--text-dim); }
+.mc-task:last-child { border-bottom:none; }
+.mc-dot { width:5px; height:5px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.dg{background:#4a7a4e} .dp{background:#8a6a2a} .ds{background:#3a7a8a} .dm{background:#c9a84c}
+
+/* ═══════════════════════════════════════
+   GUIDE CARDS
+═══════════════════════════════════════ */
+.gc { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; cursor:pointer; transition:all .25s; }
+.gc:hover { border-color:var(--card-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.35); }
+.gc-top { padding:20px 20px 14px; position:relative; }
+.gc-icon { font-size:26px; margin-bottom:10px; display:block; }
+.gc-title { font-family:'Playfair Display',serif; font-size:17px; color:var(--text); margin-bottom:3px; }
+.gc-sub { font-size:11.5px; color:var(--text-dim); line-height:1.5; }
+.gc-status { position:absolute; top:16px; right:16px; }
+.gc-steps { padding:0 20px 16px; }
+.gc-step { display:flex; gap:9px; align-items:flex-start; padding:6px 0; border-top:1px solid var(--border2); font-size:12px; color:var(--text-dim); }
+.gs-n { width:16px; height:16px; border-radius:50%; background:var(--surface3); border:1px solid var(--brass-dim); color:var(--brass); font-size:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; font-weight:600; }
+
+/* ═══════════════════════════════════════
+   INVENTORY
+═══════════════════════════════════════ */
+.inv-controls { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
+.inv-search { flex:1; min-width:180px; padding:9px 14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--r); color:var(--text); font-family:'DM Sans',sans-serif; font-size:13px; outline:none; transition:border-color .2s; }
+.inv-search::placeholder { color:var(--text-dim); }
+.inv-search:focus { border-color:var(--brass-dim); }
+.flt { padding:8px 13px; background:var(--surface); border:1px solid var(--border); border-radius:var(--r); color:var(--text-dim); font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:0.09em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.flt:hover { border-color:var(--brass-dim); color:var(--text); }
+.flt.active { background:var(--brass-dim); border-color:var(--brass-dim); color:#f0e8d5; }
+
+/* ═══════════════════════════════════════
+   ROOM CARDS (decoration)
+═══════════════════════════════════════ */
+.room-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.room-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; cursor:pointer; transition:all .2s; }
+.room-card:hover { border-color:var(--card-hover); transform:translateY(-2px); }
+.rc-stripe { height:5px; }
+.rc-body { padding:15px 17px; }
+.rc-name { font-family:'Playfair Display',serif; font-size:16px; color:var(--text); margin-bottom:9px; }
+.rc-row { display:flex; justify-content:space-between; align-items:center; font-size:11.5px; padding:4px 0; border-bottom:1px solid var(--border2); color:var(--text-dim); }
+.rc-row:last-child { border-bottom:none; }
+
+/* ═══════════════════════════════════════
+   SUPPLIERS
+═══════════════════════════════════════ */
+.supplier-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:18px; transition:all .2s; }
+.supplier-card:hover { border-color:var(--card-hover); }
+.sc-cat { font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--brass); margin-bottom:5px; }
+.sc-name { font-family:'Playfair Display',serif; font-size:17px; color:var(--text); margin-bottom:9px; }
+.sc-row { display:flex; gap:7px; align-items:center; font-size:12px; color:var(--text-dim); padding:3px 0; }
+.sc-add { margin-top:9px; font-size:10px; letter-spacing:0.09em; color:var(--brass-dim); display:flex; gap:4px; align-items:center; }
+
+/* ═══════════════════════════════════════
+   VIRTUAL TOUR
+═══════════════════════════════════════ */
+.tour-frame { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+.tour-ph { min-height:460px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:radial-gradient(ellipse at center, var(--surface2) 0%, var(--bg) 100%); }
+.tour-ph-ring { width:80px; height:80px; border-radius:50%; border:1px solid var(--brass-dim); display:flex; align-items:center; justify-content:center; font-size:32px; animation:glow 3s ease-in-out infinite; }
+@keyframes glow { 0%,100%{box-shadow:0 0 30px rgba(201,168,76,0.1)} 50%{box-shadow:0 0 60px rgba(201,168,76,0.25)} }
+.tour-url-input { padding:10px 16px; background:var(--surface2); border:1px solid rgba(201,168,76,0.3); border-radius:var(--r); color:var(--text); font-family:'DM Sans',sans-serif; font-size:13px; width:380px; max-width:90%; outline:none; }
+.tour-url-input::placeholder { color:var(--text-dim); }
+.tour-meta-row { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:18px 22px; border-top:1px solid var(--border); }
+.tm h5 { font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px; }
+.tm p { font-size:13px; color:var(--text); }
+
+/* note chip */
+.note-chip { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:2px; padding:5px 10px; font-size:11px; color:var(--brass); }
+
+/* divider */
+.divl { border:none; border-top:1px solid var(--border2); margin:16px 0; }
+
+/* scrollbar */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR (v2 exact + theme toggle) ══ -->
+<div id="topbar">
+  <div class="brand">
+    <div class="brand-crest">⌂</div>
+    <div>
+      <div class="brand-name">Stanners Hill House</div>
+      <div class="brand-sub">Chobham · Surrey · GU24 8JE</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="live-dot">Estate Hub</div>
+    <div id="current-date"></div>
+    <div class="theme-pill" onclick="toggleTheme()" title="Toggle light / dark">
+      <div class="theme-pill-track"><div class="theme-pill-thumb"></div></div>
+      <span class="theme-pill-label" id="theme-lbl">Dark</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV TABS (v2 exact) ══ -->
+<div id="navtabs">
+  <div class="tab active" onclick="show('dashboard',this)"><span class="tab-icon">◈</span> Dashboard</div>
+  <div class="tab" onclick="show('calendar',this)"><span class="tab-icon">◷</span> Seasonal Calendar</div>
+  <div class="tab" onclick="show('systems',this)"><span class="tab-icon">⚙</span> Systems & Guides</div>
+  <div class="tab" onclick="show('equipment',this)"><span class="tab-icon">⊞</span> Equipment</div>
+  <div class="tab" onclick="show('decoration',this)"><span class="tab-icon">◫</span> Decoration</div>
+  <div class="tab" onclick="show('tour',this)"><span class="tab-icon">⬡</span> Virtual Tour</div>
+  <div class="tab" onclick="show('suppliers',this)"><span class="tab-icon">☎</span> Suppliers</div>
+</div>
+
+<div id="app">
+
+<!-- ════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════ -->
+<div id="p-dashboard" class="page active">
+
+  <!-- HERO — real house photo -->
+  <div class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Estate Command Centre</div>
+      <div class="hero-title">Stanners Hill<br><em>House</em></div>
+      <div class="hero-pills">
+        <div class="hero-pill"><div><div class="pv">11.15 ac</div><div class="pl">Total Estate</div></div></div>
+        <div class="hero-pill"><div><div class="pv">6 bed</div><div class="pl">Principal House</div></div></div>
+        <div class="hero-pill"><div><div class="pv">51 ft</div><div class="pl">Swimming Pool</div></div></div>
+        <div class="hero-pill"><div><div class="pv">7</div><div class="pl">Stable Boxes</div></div></div>
+        <div class="hero-pill"><div><div class="pv">£101k</div><div class="pl">Works Budget</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="px pt24 mb16">
+    <div class="g4 mb16">
+      <div class="stat"><div class="stat-ico">🏗</div><div class="stat-ey">Active Works</div><div class="stat-v">3</div><div class="stat-s">Interior · Electrical · Garden</div></div>
+      <div class="stat"><div class="stat-ico">⏳</div><div class="stat-ey">On Hold</div><div class="stat-v">15</div><div class="stat-s">Awaiting approval</div></div>
+      <div class="stat"><div class="stat-ico">✓</div><div class="stat-ey">Completed</div><div class="stat-v">5</div><div class="stat-s">Fencing · Moss · more</div></div>
+      <div class="stat"><div class="stat-ico">💷</div><div class="stat-ey">Budget</div><div class="stat-v"><sup>£</sup>101k</div><div class="stat-s">23 line items</div></div>
+    </div>
+
+    <!-- ROW 2: Budget donut + Bar chart + Right col -->
+    <div class="g3 mb16">
+
+      <!-- Donut + spend breakdown -->
+      <div class="card">
+        <div class="ch"><h3>Budget by Category</h3></div>
+        <div class="cb">
+          <div style="display:flex;align-items:center;gap:18px">
+            <div class="chart-wrap" style="width:120px;height:120px;flex-shrink:0">
+              <canvas id="donutChart" width="120" height="120"></canvas>
+              <div class="chart-label"><div class="cv">£101k</div><div class="cl">total</div></div>
+            </div>
+            <div style="flex:1">
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px"><div style="width:7px;height:7px;border-radius:50%;background:#4a7a4e;flex-shrink:0"></div><span style="flex:1;color:var(--text-dim)">Garden</span><span style="color:var(--text);font-weight:500">£52.4k</span></div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px"><div style="width:7px;height:7px;border-radius:50%;background:#c9a84c;flex-shrink:0"></div><span style="flex:1;color:var(--text-dim)">Security</span><span style="color:var(--text);font-weight:500">£15.2k</span></div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px"><div style="width:7px;height:7px;border-radius:50%;background:#8a4a2a;flex-shrink:0"></div><span style="flex:1;color:var(--text-dim)">Interior / AV</span><span style="color:var(--text);font-weight:500">£21.8k</span></div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px"><div style="width:7px;height:7px;border-radius:50%;background:#3a8a7a;flex-shrink:0"></div><span style="flex:1;color:var(--text-dim)">Pool</span><span style="color:var(--text);font-weight:500">£4.0k</span></div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px"><div style="width:7px;height:7px;border-radius:50%;background:#5a5a7a;flex-shrink:0"></div><span style="flex:1;color:var(--text-dim)">Other</span><span style="color:var(--text);font-weight:500">£7.6k</span></div>
+              </div>
+            </div>
+          </div>
+          <hr class="divl">
+          <!-- Spend status progress bars -->
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--text-dim)">Complete</span><span style="color:#7ac47e">£25.4k (25%)</span></div>
+              <div class="prog"><div class="prog-f" style="width:25%;background:linear-gradient(90deg,#3a6a3e,#4a8a4e)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--text-dim)">On-going</span><span style="color:#c4943a">~£22k (22%)</span></div>
+              <div class="prog"><div class="prog-f" style="width:22%;background:linear-gradient(90deg,#7a5020,#c4943a)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:var(--text-dim)">On Hold</span><span style="color:#5abcaa">£54.5k (54%)</span></div>
+              <div class="prog"><div class="prog-f" style="width:54%;background:linear-gradient(90deg,#2a5a6a,#3a8a9a)"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal bar chart — spend by supplier -->
+      <div class="card">
+        <div class="ch"><h3>Spend by Supplier</h3><span class="badge b-dim">Top 6</span></div>
+        <div class="cb">
+          <canvas id="barChart" height="200"></canvas>
+        </div>
+      </div>
+
+      <!-- Right col: works status mini table + this month -->
+      <div class="gcol">
+        <div class="card">
+          <div class="ch"><h3>Works Status</h3><span class="badge b-amber">23 items</span></div>
+          <div class="cb0">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Cost</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="s">Internal Refurb</td><td>TBC</td><td><span class="badge b-amber">Active</span></td></tr>
+                <tr><td class="s">Electrical Overhaul</td><td>TBC</td><td><span class="badge b-amber">Active</span></td></tr>
+                <tr><td class="s">Garden Machinery</td><td>TBC</td><td><span class="badge b-amber">Active</span></td></tr>
+                <tr><td class="s">Formal Irrigation</td><td>£15,000</td><td><span class="badge b-blue">On Hold</span></td></tr>
+                <tr><td class="s">Security Cameras</td><td>£7,050</td><td><span class="badge b-blue">On Hold</span></td></tr>
+                <tr><td class="s">Gate Remedial</td><td>£6,259</td><td><span class="badge b-blue">On Hold</span></td></tr>
+                <tr><td class="s">Roof & Surface</td><td>£17,000</td><td><span class="badge b-green">Done</span></td></tr>
+                <tr><td class="s">Fencing</td><td>£5,012</td><td><span class="badge b-green">Done</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /g3 -->
+
+    <!-- ROW 3: Systems status gauges + This month + Estate facts -->
+    <div class="g3">
+
+      <!-- Systems health radial gauges -->
+      <div class="card">
+        <div class="ch"><h3>Systems Health</h3></div>
+        <div class="cb">
+          <div class="gauge-row">
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#4a7a4e" stroke-width="7"
+                  stroke-dasharray="105.6 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="11" font-family="Playfair Display,serif" fill="#7ac47e">OK</text>
+              </svg>
+              <div class="gauge-val">Generator</div>
+              <div class="gauge-lbl">Active</div>
+            </div>
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#3a8a7a" stroke-width="7"
+                  stroke-dasharray="44 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="9" font-family="DM Sans,sans-serif" fill="#5abcaa">Hold</text>
+              </svg>
+              <div class="gauge-val">Pool</div>
+              <div class="gauge-lbl">On Hold</div>
+            </div>
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#3a8a7a" stroke-width="7"
+                  stroke-dasharray="44 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="9" font-family="DM Sans,sans-serif" fill="#5abcaa">Hold</text>
+              </svg>
+              <div class="gauge-val">Irrigation</div>
+              <div class="gauge-lbl">On Hold</div>
+            </div>
+          </div>
+          <div class="gauge-row">
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#c9a84c" stroke-width="7"
+                  stroke-dasharray="70 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="9" font-family="DM Sans,sans-serif" fill="#c9a84c">Attn</text>
+              </svg>
+              <div class="gauge-val">Gates</div>
+              <div class="gauge-lbl">Remedial</div>
+            </div>
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#3a8a7a" stroke-width="7"
+                  stroke-dasharray="44 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="9" font-family="DM Sans,sans-serif" fill="#5abcaa">Sched</text>
+              </svg>
+              <div class="gauge-val">Lift</div>
+              <div class="gauge-lbl">Scheduled</div>
+            </div>
+            <div class="gauge-item">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="var(--surface3)" stroke-width="7"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#c45a3a" stroke-width="7"
+                  stroke-dasharray="30 175.9" stroke-dashoffset="44" transform="rotate(-90 36 36)"/>
+                <text x="36" y="40" text-anchor="middle" font-size="9" font-family="DM Sans,sans-serif" fill="#e07050">Pend</text>
+              </svg>
+              <div class="gauge-val">Security</div>
+              <div class="gauge-lbl">Pending</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- This month tasks -->
+      <div class="card">
+        <div class="ch">
+          <h3>This Month</h3>
+          <span style="font-family:'Playfair Display',serif;font-size:14px;color:var(--brass);font-style:italic;text-transform:none;letter-spacing:0" id="this-month-name"></span>
+        </div>
+        <div style="padding:12px 16px" id="this-month-tasks"></div>
+        <div style="padding:0 16px 14px">
+          <canvas id="monthTaskChart" height="80"></canvas>
+        </div>
+      </div>
+
+      <!-- Estate facts -->
+      <div class="card">
+        <div class="ch"><h3>Estate Quick Facts</h3></div>
+        <div class="cb" style="padding:0 20px">
+          <ul class="rl">
+            <li><span class="k">Heating</span><span class="v">Oil (no mains gas)</span></li>
+            <li><span class="k">Drainage</span><span class="v">Private septic</span></li>
+            <li><span class="k">Generator</span><span class="v">2-week full estate</span></li>
+            <li><span class="k">Council Tax</span><span class="v">Band H — Surrey Heath</span></li>
+            <li><span class="k">EPC Rating</span><span class="v">G</span></li>
+            <li><span class="k">Tenure</span><span class="v">Freehold</span></li>
+            <li><span class="k">Acreage</span><span class="v">11.15 acres</span></li>
+            <li><span class="k">Guide Price</span><span class="v">£7,500,000</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /g3 row 3 -->
+
+  </div><!-- /px -->
+</div><!-- /dashboard -->
+
+
+<!-- ════════════════════════════════════════
+     CALENDAR
+════════════════════════════════════════ -->
+<div id="p-calendar" class="page">
+  <div class="px pt24">
+    <div class="ph">
+      <div class="ph-left"><div class="eyebrow">Grounds Management</div><h2>Seasonal Calendar</h2><p>Annual schedule of garden treatments, pest control, system operations and maintenance across the estate.</p></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><div style="width:7px;height:7px;border-radius:50%;background:#4a7a4e"></div>Garden</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><div style="width:7px;height:7px;border-radius:50%;background:#8a6a2a"></div>Pest / Treatment</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><div style="width:7px;height:7px;border-radius:50%;background:#3a7a8a"></div>Systems</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><div style="width:7px;height:7px;border-radius:50%;background:#c9a84c"></div>Maintenance</div>
+      </div>
+    </div>
+    <div class="month-grid" id="full-calendar"></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SYSTEMS
+════════════════════════════════════════ -->
+<div id="p-systems" class="page">
+  <div class="px pt24">
+    <div class="ph"><div class="ph-left"><div class="eyebrow">Operations</div><h2>Systems & Guides</h2><p>Step-by-step procedures for all major estate systems. Owner and caretaker self-service.</p></div></div>
+    <div class="g3" id="guides-grid"></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     EQUIPMENT
+════════════════════════════════════════ -->
+<div id="p-equipment" class="page">
+  <div class="px pt24">
+    <div class="ph"><div class="ph-left"><div class="eyebrow">Asset Register</div><h2>Equipment Inventory</h2><p>All estate machinery, vehicles and operational equipment — searchable and filterable.</p></div></div>
+    <div class="inv-controls">
+      <input class="inv-search" id="inv-q" placeholder="Search equipment, location…" oninput="filterInv()">
+      <button class="flt active" onclick="setFlt(this,'all')">All</button>
+      <button class="flt" onclick="setFlt(this,'Grounds')">Grounds</button>
+      <button class="flt" onclick="setFlt(this,'Pool')">Pool</button>
+      <button class="flt" onclick="setFlt(this,'Security')">Security</button>
+      <button class="flt" onclick="setFlt(this,'Mechanical')">Mechanical</button>
+    </div>
+    <div class="card"><table class="tbl"><thead><tr><th>Item</th><th>Category</th><th>Location</th><th>Service Contact</th><th>Notes</th><th>Status</th></tr></thead><tbody id="inv-body"></tbody></table></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     DECORATION
+════════════════════════════════════════ -->
+<div id="p-decoration" class="page">
+  <div class="px pt24">
+    <div class="ph"><div class="ph-left"><div class="eyebrow">Interior Works</div><h2>Decoration Reference</h2><p>Room-by-room schedule — wallpaper, paint codes, and open design questions flagged.</p></div><span class="badge b-red">3 open questions</span></div>
+    <div class="room-grid mb16">
+      <div class="room-card"><div class="rc-stripe" style="background:#8a5a2a"></div><div class="rc-body"><div class="rc-name">Bar</div><div class="rc-row"><span>Wallpaper</span><span class="badge b-amber">Confirm with design</span></div><div class="rc-row"><span>Woodwork</span><span class="badge b-amber">Cream — code TBC</span></div><div class="rc-row"><span>Status</span><span class="badge b-amber">In Progress</span></div></div></div>
+      <div class="room-card"><div class="rc-stripe" style="background:#4a5a4a"></div><div class="rc-body"><div class="rc-name">Office / Study</div><div class="rc-row"><span>Wallpaper</span><span class="badge b-amber">TBC</span></div><div class="rc-row"><span>Woodwork</span><span class="badge b-amber">Code TBC</span></div><div class="rc-row"><span>Status</span><span class="badge b-amber">In Progress</span></div></div></div>
+      <div class="room-card"><div class="rc-stripe" style="background:#c9a84c"></div><div class="rc-body"><div class="rc-name">Master Bedroom</div><div class="rc-row"><span>Wallpaper</span><span class="badge b-red">⚠ Selection open</span></div><div class="rc-row"><span>Woodwork</span><span class="badge b-amber">TBC</span></div><div class="rc-row"><span>Status</span><span class="badge b-blue">Awaiting Design</span></div></div></div>
+      <div class="room-card"><div class="rc-stripe" style="background:#3a7a8a"></div><div class="rc-body"><div class="rc-name">Kitchen</div><div class="rc-row"><span>Wallpaper</span><span class="badge b-amber">TBC</span></div><div class="rc-row"><span>Finish</span><span class="badge b-amber">Pending</span></div><div class="rc-row"><span>Status</span><span class="badge b-blue">On Hold</span></div></div></div>
+      <div class="room-card"><div class="rc-stripe" style="background:#6a5a8a"></div><div class="rc-body"><div class="rc-name">Apartment</div><div class="rc-row"><span>Toilet Colour</span><span class="badge b-red">⚠ Gradient TBC</span></div><div class="rc-row"><span>Woodwork</span><span class="badge b-amber">TBC</span></div><div class="rc-row"><span>Status</span><span class="badge b-blue">Awaiting Design</span></div></div></div>
+      <div class="room-card"><div class="rc-stripe" style="background:#7a6a5a"></div><div class="rc-body"><div class="rc-name">Reception / Living</div><div class="rc-row"><span>Paint Works</span><span class="badge b-amber">On-going</span></div><div class="rc-row"><span>Contractor</span><span style="font-size:11px;color:var(--text-dim)">Albanian team</span></div><div class="rc-row"><span>Status</span><span class="badge b-amber">In Progress</span></div></div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Wallpaper Reference Tracker</h3><span class="note-chip">🔗 Link Sheets</span></div>
+      <div class="cb" style="padding:0 20px">
+        <ul class="rl">
+          <li><span class="k">Reference system</span><span class="v">WP1 → WP? · images in Google Sheets</span></li>
+          <li><span class="k" style="color:#e07050">⚠ Open</span><span style="color:#e07050;font-size:12px">Master Bedroom — final wallpaper selection</span></li>
+          <li><span class="k" style="color:#e07050">⚠ Open</span><span style="color:#e07050;font-size:12px">Cream woodwork paint codes — design team to confirm</span></li>
+          <li><span class="k" style="color:#e07050">⚠ Open</span><span style="color:#e07050;font-size:12px">Apartment toilet colour / gradient — Beautiful Spaces</span></li>
+          <li><span class="k">Contractor</span><span class="v">RIO PRO via Daniel (Beautiful Spaces)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     VIRTUAL TOUR
+════════════════════════════════════════ -->
+<div id="p-tour" class="page">
+  <div class="px pt24">
+    <div class="ph"><div class="ph-left"><div class="eyebrow">Property Walkthrough</div><h2>Virtual Tour</h2><p>Interactive Matterport 3D — paste your share URL below to activate.</p></div></div>
+    <div class="tour-frame">
+      <div class="tour-ph" id="tour-ph">
+        <div class="tour-ph-ring">⬡</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text)">Matterport 3D Tour</h3>
+        <p style="font-size:12px;color:var(--text-dim)">Paste your Matterport share URL below to embed</p>
+        <input class="tour-url-input" id="tour-url" placeholder="https://my.matterport.com/show/?m=XXXXXXXX" oninput="activateTour()">
+      </div>
+      <iframe id="tour-iframe" style="display:none;width:100%;height:520px;border:none" allowfullscreen></iframe>
+      <div class="tour-meta-row">
+        <div class="tm"><h5>Property</h5><p>Stanners Hill House, Chobham</p></div>
+        <div class="tm"><h5>Coverage</h5><p>Main House · Cottage · Pool House</p></div>
+        <div class="tm"><h5>Platform</h5><p>Matterport 3D</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SUPPLIERS
+════════════════════════════════════════ -->
+<div id="p-suppliers" class="page">
+  <div class="px pt24">
+    <div class="ph"><div class="ph-left"><div class="eyebrow">Directory</div><h2>Suppliers & Contacts</h2><p>All active contractors and service providers — direct access, no intermediary needed.</p></div></div>
+    <div class="g3" id="supplier-grid"></div>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ═══ DATE
+const now = new Date();
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const SEASONS = ['Winter','Winter','Early Spring','Spring','Spring','Early Summer','Summer','Summer','Early Autumn','Autumn','Late Autumn','Winter'];
+document.getElementById('current-date').textContent = now.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric'});
+
+// ═══ THEME
+function toggleTheme(){
+  const h = document.documentElement;
+  const light = h.getAttribute('data-theme') === 'light';
+  h.setAttribute('data-theme', light ? 'dark' : 'light');
+  document.getElementById('theme-lbl').textContent = light ? 'Dark' : 'Light';
+  localStorage.setItem('shh-theme', light ? 'dark' : 'light');
+  updateChartColors();
+}
+const saved = localStorage.getItem('shh-theme');
+if(saved){ document.documentElement.setAttribute('data-theme',saved); document.getElementById('theme-lbl').textContent = saved==='light'?'Light':'Dark'; }
+
+// ═══ NAV
+function show(id, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ═══ CHARTS
+let donutChart, barChart, monthChart;
+
+function getGridColor(){ return getComputedStyle(document.documentElement).getPropertyValue('--chart-grid').trim() || 'rgba(255,255,255,0.06)'; }
+function getTextColor(){ return getComputedStyle(document.documentElement).getPropertyValue('--text-dim').trim() || '#7a7060'; }
+
+window.addEventListener('load', () => {
+  // ── Donut
+  donutChart = new Chart(document.getElementById('donutChart'), {
+    type:'doughnut',
+    data:{
+      datasets:[{
+        data:[52.4,15.2,21.8,4.0,7.6],
+        backgroundColor:['#4a7a4e','#c9a84c','#8a4a2a','#3a8a7a','#5a5a7a'],
+        borderWidth:0, hoverOffset:4
+      }]
+    },
+    options:{
+      cutout:'72%', plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' £'+c.raw+'k'}}},
+      animation:{animateRotate:true,duration:1200}
+    }
+  });
+
+  // ── Horizontal bar — spend by supplier
+  barChart = new Chart(document.getElementById('barChart'), {
+    type:'bar',
+    data:{
+      labels:['Landscape Dreams','Moss Masters','RIO PRO / Interior','Niche Security','Wetlands','Citygate'],
+      datasets:[{
+        data:[52.4,17,22,14.8,15.4,6.8],
+        backgroundColor:['rgba(74,122,78,0.7)','rgba(74,122,78,0.5)','rgba(138,74,42,0.7)','rgba(201,168,76,0.7)','rgba(58,138,122,0.7)','rgba(201,168,76,0.5)'],
+        borderColor:['#4a7a4e','#4a7a4e','#8a4a2a','#c9a84c','#3a8a7a','#c9a84c'],
+        borderWidth:1, borderRadius:3,
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' £'+c.raw+'k'}}},
+      scales:{
+        x:{ grid:{color:getGridColor()}, ticks:{color:getTextColor(),callback:v=>'£'+v+'k'}, border:{display:false} },
+        y:{ grid:{display:false}, ticks:{color:getTextColor(),font:{size:11}} }
+      },
+      animation:{duration:1000}
+    }
+  });
+
+  // ── Month activity type breakdown (polar-area style using doughnut)
+  monthChart = new Chart(document.getElementById('monthTaskChart'), {
+    type:'bar',
+    data:{
+      labels:['Garden','Pest','Systems','Maint'],
+      datasets:[{
+        data: getMonthTaskCounts(),
+        backgroundColor:['rgba(74,122,78,0.7)','rgba(138,106,42,0.7)','rgba(58,122,138,0.7)','rgba(201,168,76,0.7)'],
+        borderColor:['#4a7a4e','#8a6a2a','#3a7a8a','#c9a84c'],
+        borderWidth:1, borderRadius:3,
+      }]
+    },
+    options:{
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' task'+(c.raw!==1?'s':'')}}},
+      scales:{
+        x:{grid:{display:false},ticks:{color:getTextColor(),font:{size:10}}},
+        y:{grid:{color:getGridColor()},ticks:{color:getTextColor(),stepSize:1},border:{display:false}}
+      },
+      animation:{duration:800}
+    }
+  });
+});
+
+function getMonthTaskCounts(){
+  const mi = now.getMonth();
+  const tasks = calData[mi].tasks;
+  return [
+    tasks.filter(t=>t.c==='dg').length,
+    tasks.filter(t=>t.c==='dp').length,
+    tasks.filter(t=>t.c==='ds').length,
+    tasks.filter(t=>t.c==='dm').length,
+  ];
+}
+
+function updateChartColors(){
+  if(!barChart) return;
+  const gc = getGridColor(), tc = getTextColor();
+  [barChart, monthChart].forEach(ch=>{
+    if(!ch) return;
+    if(ch.options.scales?.x){ ch.options.scales.x.grid.color=gc; ch.options.scales.x.ticks.color=tc; }
+    if(ch.options.scales?.y){ ch.options.scales.y.grid.color=gc; ch.options.scales.y.ticks.color=tc; }
+    ch.update();
+  });
+}
+
+// ═══ CALENDAR DATA
+const calData = [
+  {m:'January',s:'Winter',tasks:[{c:'dm',t:'Inspect fencing & boundary structures'},{c:'dm',t:'Check generator fuel & service log'},{c:'ds',t:'Pool cover check · water chemistry'},{c:'dg',t:'Plan spring programme with Landscape Dreams'}]},
+  {m:'February',s:'Winter',tasks:[{c:'dg',t:'Prune roses & ornamental shrubs'},{c:'dm',t:'Tractor battery check — Clifton Turf'},{c:'ds',t:'Pre-season pool equipment inspection'},{c:'dg',t:'Box topiary inspection for moth signs'}]},
+  {m:'March',s:'Early Spring',tasks:[{c:'dg',t:'Lawn spring feed (late March)'},{c:'dp',t:'Xentari / caterpillar spray for box — 1st round'},{c:'dp',t:'Box tree moth spray — begin treatment'},{c:'ds',t:'Irrigation spring start-up (Wetlands)'},{c:'dp',t:'Weed treatment — every 3 weeks'}]},
+  {m:'April',s:'Spring',tasks:[{c:'dg',t:'Plant feed granules — first application'},{c:'dp',t:'Slug spray for plants — begin cycle'},{c:'dp',t:'Seaweed feed for hedges — first dose'},{c:'ds',t:'Pool opening · full chemical balance'},{c:'dg',t:'Lawn mowing season begins'}]},
+  {m:'May',s:'Spring',tasks:[{c:'dp',t:'Box caterpillar — repeat spray'},{c:'dp',t:'Weed treatment — 3rd cycle'},{c:'dg',t:'Plant feed granules — repeat'},{c:'dm',t:'Lift inspection — Kinetic (1st visit)'}]},
+  {m:'June',s:'Early Summer',tasks:[{c:'dp',t:'Box tree moth — 2nd generation spray'},{c:'dp',t:'Slug spray — repeat cycle'},{c:'dg',t:'Seaweed feed hedges — repeat'},{c:'ds',t:'Pool weekly shock treatment in heat'}]},
+  {m:'July',s:'Summer',tasks:[{c:'dp',t:'Xentari — repeat (6-week cycle)'},{c:'dp',t:'Weed treatment — continue'},{c:'dg',t:'Plant feed granules'},{c:'dm',t:'Irrigation mid-season check'}]},
+  {m:'August',s:'Summer',tasks:[{c:'dp',t:'Box moth — 3rd generation treatment'},{c:'dg',t:'Seaweed hedge feed'},{c:'dm',t:'Lift inspection — Kinetic (2nd visit)'},{c:'dg',t:'Kitchen garden harvest & maintenance'}]},
+  {m:'September',s:'Early Autumn',tasks:[{c:'dg',t:'Lawn autumn feed'},{c:'dp',t:'Final weed treatment of season'},{c:'dp',t:'Final caterpillar / box spray'},{c:'ds',t:'Begin pool wind-down · cover prep'}]},
+  {m:'October',s:'Autumn',tasks:[{c:'dg',t:'Leaf blowing — weekly programme'},{c:'dg',t:'Final plant feed of season'},{c:'ds',t:'Irrigation winterisation — Wetlands'},{c:'ds',t:'Pool closing — full winter prep'}]},
+  {m:'November',s:'Late Autumn',tasks:[{c:'dg',t:'Leaf blowing — intensive period'},{c:'dg',t:'Planting spring bulbs'},{c:'dm',t:'Lift inspection — Kinetic (3rd visit)'},{c:'dm',t:'Generator annual test run'}]},
+  {m:'December',s:'Winter',tasks:[{c:'dg',t:'Final leaf clearance'},{c:'dm',t:'Lift inspection — Kinetic (4th visit)'},{c:'dm',t:'Annual gate maintenance — Citygate'},{c:'dm',t:'Year-end equipment service review'}]},
+];
+
+// Full calendar
+const fc = document.getElementById('full-calendar');
+calData.forEach((mo,i)=>{
+  const isNow = i===now.getMonth();
+  const tasks = mo.tasks.map(t=>`<div class="mc-task"><div class="mc-dot ${t.c}"></div>${t.t}</div>`).join('');
+  fc.innerHTML += `<div class="mc${isNow?' now':''}">
+    <div class="mch">
+      <span class="mc-name">${mo.m}${isNow?'<span style="font-size:9px;color:var(--brass);margin-left:8px;font-family:\'DM Sans\',sans-serif;letter-spacing:0.12em;text-transform:uppercase"> Now</span>':''}</span>
+      <span class="mc-season">${mo.s}</span>
+    </div>
+    <div class="mc-tasks">${tasks}</div>
+  </div>`;
+});
+
+// Dashboard this-month
+const mi = now.getMonth();
+document.getElementById('this-month-name').textContent = calData[mi].m;
+document.getElementById('this-month-tasks').innerHTML = calData[mi].tasks.map(t=>`<div class="mc-task"><div class="mc-dot ${t.c}"></div>${t.t}</div>`).join('');
+
+// ═══ GUIDES
+const guides=[
+  {icon:'💧',title:'Garden Irrigation',sub:'Wetlands Irrigation · Mar–Oct',status:{cls:'b-blue',label:'On Hold'},steps:['Spring start-up — contact Wetlands (£390)','Check all zone heads for blockage or damage','Set controller: zones, duration, frequency','Mid-season audit in July','October: winterise before first frost']},
+  {icon:'🏊',title:'Swimming Pool',sub:'Lagoon Pools · 51 ft outdoor',status:{cls:'b-blue',label:'On Hold'},steps:['April: remove cover, inspect pump & filter','Balance chemistry: pH 7.2–7.6, chlorine, alkalinity','Weekly: test, skim surface, brush, backwash','Shock treatment weekly in peak summer','October: lower water, winterise, fit cover']},
+  {icon:'⚡',title:'Generator',sub:'Full estate · 2-week capacity',status:{cls:'b-green',label:'Active'},steps:['Monthly visual check — fuel, oil, coolant','Monthly test run: 30 min under partial load','Annual service — book November before winter','Power outage: confirm auto-start, monitor panel']},
+  {icon:'🚪',title:'Electric Gates',sub:'Citygate Automation · entrance',status:{cls:'b-amber',label:'Attention'},steps:['Annual maintenance — December (£576)','Check motor housing for water ingress after rain','Lubricate hinges and tracks every 6 months','Remedial works £6,259 — pending approval']},
+  {icon:'🛗',title:'Passenger Lift',sub:'Kinetic Lift · 4 visits/year',status:{cls:'b-blue',label:'Scheduled'},steps:['1st visit — May','2nd visit — August','3rd visit — November','4th visit — December / January']},
+  {icon:'🔒',title:'Security Systems',sub:'Niche Security · cameras, alarm',status:{cls:'b-blue',label:'Pending'},steps:['Main house alarm upgrade £2,682 — pending','11-camera install £7,050 — pending','Bungalow WiFi £1,074 — pending','Lock replacement £4,415 — pending']},
+  {icon:'🌿',title:'Box Tree Treatment',sub:'Xentari · caterpillar & moth',status:{cls:'b-amber',label:'Seasonal'},steps:['End March: first Xentari caterpillar spray','Every 2–6 weeks March–October','Target generations: spring, summer, early autumn','Seaweed hedge feed alongside spray programme']},
+  {icon:'♻',title:'Septic Tank',sub:"Caroline's Effluent · annual",status:{cls:'b-green',label:'Done'},steps:["Annual emptying — Caroline's Effluent (£260)",'Check soakaway for saturation after heavy rain','Log emptying dates for planning records']},
+  {icon:'📺',title:'AV Systems',sub:'ATI · full estate survey',status:{cls:'b-blue',label:'On Hold'},steps:['Full survey — ATI (£900)','Map all zones: house, pool house, cottage','Identify legacy wiring for replacement','Confirm speaker and screen inventory post-survey']},
+];
+const gg=document.getElementById('guides-grid');
+guides.forEach(g=>{
+  const steps=g.steps.map((s,i)=>`<div class="gc-step"><div class="gs-n">${i+1}</div>${s}</div>`).join('');
+  gg.innerHTML+=`<div class="gc"><div class="gc-top"><span class="gc-icon">${g.icon}</span><div class="gc-title">${g.title}</div><div class="gc-sub">${g.sub}</div><div class="gc-status"><span class="badge ${g.status.cls}">${g.status.label}</span></div></div><div class="gc-steps">${steps}</div></div>`;
+});
+
+// ═══ INVENTORY
+const invData=[
+  {name:'John Deere Tractor (1)',cat:'Grounds',loc:'Outbuildings / Grounds',contact:'Clifton Turf',service:'Battery replacement — ongoing',st:'b-amber',stl:'In Progress'},
+  {name:'John Deere Tractor (2)',cat:'Grounds',loc:'Outbuildings / Grounds',contact:'Clifton Turf',service:'Battery replacement — ongoing',st:'b-amber',stl:'In Progress'},
+  {name:'Ride-on Mower',cat:'Grounds',loc:'Outbuildings',contact:'Clifton Turf',service:'Annual service',st:'b-green',stl:'Active'},
+  {name:'Leaf Blower (backpack)',cat:'Grounds',loc:'Outbuildings',contact:'—',service:'Annual check',st:'b-green',stl:'Active'},
+  {name:'Strimmer',cat:'Grounds',loc:'Outbuildings',contact:'—',service:'Annual check',st:'b-green',stl:'Active'},
+  {name:'Pool Pump & Filter',cat:'Pool',loc:'Pool plant room',contact:'Lagoon Pools',service:'Inspect April on opening',st:'b-blue',stl:'Scheduled'},
+  {name:'Pool Cover (winter)',cat:'Pool',loc:'Pool house',contact:'Lagoon Pools',service:'Inspect on fitting October',st:'b-green',stl:'Active'},
+  {name:'Irrigation Controller',cat:'Grounds',loc:'Garden / outbuilding',contact:'Wetlands Irrigation',service:'Spring start-up required',st:'b-blue',stl:'Scheduled'},
+  {name:'Security Camera System',cat:'Security',loc:'Main house · perimeter',contact:'Niche Security',service:'Installation pending',st:'b-blue',stl:'Pending'},
+  {name:'Alarm Panel',cat:'Security',loc:'Main house',contact:'Niche Security',service:'Upgrade pending',st:'b-blue',stl:'Pending'},
+  {name:'Estate Generator',cat:'Mechanical',loc:'Generator building',contact:'TBC',service:'Annual service November',st:'b-green',stl:'Active'},
+  {name:'Passenger Lift',cat:'Mechanical',loc:'Main house',contact:'Kinetic Lift',service:'Quarterly 4×/year',st:'b-blue',stl:'Scheduled'},
+  {name:'Electric Gate Motors',cat:'Security',loc:'Main entrance',contact:'Citygate Automation',service:'Annual Dec · remedial pending',st:'b-amber',stl:'Attention'},
+  {name:'AV System',cat:'Mechanical',loc:'House · pool house',contact:'ATI',service:'Full survey pending (£900)',st:'b-blue',stl:'Pending'},
+];
+let activeFlt='all';
+function renderInv(data){ document.getElementById('inv-body').innerHTML=data.map(d=>`<tr><td class="s">${d.name}</td><td>${d.cat}</td><td>${d.loc}</td><td>${d.contact}</td><td>${d.service}</td><td><span class="badge ${d.st}">${d.stl}</span></td></tr>`).join(''); }
+function filterInv(){ const q=document.getElementById('inv-q').value.toLowerCase(); let d=invData; if(activeFlt!=='all')d=d.filter(i=>i.cat===activeFlt); if(q)d=d.filter(i=>i.name.toLowerCase().includes(q)||i.loc.toLowerCase().includes(q)||i.service.toLowerCase().includes(q)); renderInv(d); }
+function setFlt(btn,cat){ activeFlt=cat; document.querySelectorAll('.flt').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); filterInv(); }
+renderInv(invData);
+
+// ═══ SUPPLIERS
+const suppliers=[
+  {cat:'Property Management',name:'WebsterHart',rows:['Coordinates all on-hold works','Primary estate management'],add:true},
+  {cat:'Garden & Grounds',name:'Landscape Dreams',rows:['£840/visit · 46 visits/year','Main field: 14 mowing visits'],add:true},
+  {cat:'Interior Design',name:'Beautiful Spaces',rows:['Design coordination (Daniel)','Wallpaper & decoration spec'],add:false},
+  {cat:'Interior Works',name:'RIO PRO',rows:['Wallpaper, ceilings, woodwork','Via Daniel (Beautiful Spaces)'],add:true},
+  {cat:'Security',name:'Niche Security',rows:['Cameras, alarm, WiFi','Total pending: ~£14,806'],add:true},
+  {cat:'Gate Automation',name:'Citygate Automation',rows:['Electric gate maintenance','Annual service: December'],add:true},
+  {cat:'Fencing',name:'Wesson Fencing',rows:['Stable side & all-round','Works complete ✓'],add:true},
+  {cat:'Exterior Cleaning',name:'Moss Masters',rows:['Roof, surfaces, statues cleaned','£17,000 — complete ✓'],add:true},
+  {cat:'Irrigation',name:'Wetlands Irrigation',rows:['Seasonal start & shutdown','Formal lawns install pending'],add:true},
+  {cat:'Pool',name:'Lagoon Pools',rows:['Annual maintenance £3,984','Spring opening / autumn close'],add:true},
+  {cat:'Garden Machinery',name:'Clifton Turf',rows:['Tractor battery & service','Via WebsterHart'],add:true},
+  {cat:'Lift Services',name:'Kinetic Lift',rows:['4 visits per year · £400','May · Aug · Nov · Dec/Jan'],add:true},
+  {cat:'Drainage',name:"Caroline's Effluent",rows:['Septic tank emptying · £260','Annual service'],add:true},
+  {cat:'Audio / Visual',name:'ATI',rows:['Full AV survey £900','Via WebsterHart'],add:true},
+  {cat:'Electrical',name:'Eng. Osman',rows:['Full electrical overhaul','Via Mr. Fouad'],add:true},
+];
+const sg=document.getElementById('supplier-grid');
+suppliers.forEach(s=>{sg.innerHTML+=`<div class="supplier-card"><div class="sc-cat">${s.cat}</div><div class="sc-name">${s.name}</div>${s.rows.map(r=>`<div class="sc-row">↗ ${r}</div>`).join('')}${s.add?'<div class="sc-add">⚑ Add phone & email</div>':''}</div>`;});
+
+// ═══ TOUR
+function activateTour(){ const url=document.getElementById('tour-url').value.trim(); if(url.includes('matterport.com')){ document.getElementById('tour-ph').style.display='none'; const f=document.getElementById('tour-iframe'); f.src=url; f.style.display='block'; } }
+</script>
+</body>
+</html>
