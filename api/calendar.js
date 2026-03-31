@@ -76,7 +76,7 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const text = await response.text();
       console.error('Google Calendar API error:', response.status, text);
-      return res.status(502).json({ error: 'Calendar API error', status: response.status, detail: text });
+      return res.status(502).json({ error: 'Calendar API error', status: response.status, detail: text, calendarId: calendarId, urlUsed: url });
     }
     const data = await response.json();
     const events = (data.items || []).map(formatEvent);
