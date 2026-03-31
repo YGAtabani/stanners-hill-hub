@@ -745,6 +745,32 @@ body::before {
         <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)"><div style="width:7px;height:7px;border-radius:50%;background:#c9a84c"></div>Maintenance</div>
       </div>
     </div>
+
+    <!-- Interactive Calendar -->
+    <div class="ical" id="ical">
+      <div class="ical-controls">
+        <div class="ical-views">
+          <button class="ical-view-btn active" onclick="setCalView('month',this)">Month</button>
+          <button class="ical-view-btn" onclick="setCalView('week',this)">Week</button>
+        </div>
+        <div class="ical-nav">
+          <button class="ical-nav-btn" onclick="navCal(-1)">&#8249;</button>
+          <div class="ical-title" id="ical-title"></div>
+          <button class="ical-nav-btn" onclick="navCal(1)">&#8250;</button>
+        </div>
+      </div>
+      <div id="ical-grid-wrap">
+        <div class="ical-loading">Loading calendar...</div>
+      </div>
+      <div class="ical-detail" id="ical-detail"></div>
+    </div>
+
+    <!-- Annual Overview -->
+    <div style="margin-top:8px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+      <span style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);font-family:'DM Sans',sans-serif">Annual Overview</span>
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+    </div>
     <div class="month-grid" id="full-calendar"></div>
   </div>
 </div>
