@@ -22,7 +22,7 @@ function formatEvent(item) {
   const allDay = !!item.start.date;
   let time = null;
   if (!allDay && item.start.dateTime) {
-    time = new Date(item.start.dateTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+    time = item.start.dateTime.slice(11, 16);
   }
   return {
     title,
