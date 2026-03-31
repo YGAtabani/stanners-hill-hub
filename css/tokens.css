@@ -1,0 +1,71 @@
+/* ═══════════════════════════════════════
+   THEME TOKENS
+═══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:         #0f1a10;
+  --surface:    #162018;
+  --surface2:   #1d2b1f;
+  --surface3:   #253228;
+  --border:     rgba(255,255,255,0.07);
+  --border2:    rgba(255,255,255,0.04);
+  --text:       #e8dfc8;
+  --text-dim:   #7a7060;
+  --text-mid:   #b0a080;
+  --cream:      #f0e8d5;
+  --cream-dim:  #a09070;
+  --topbar:     rgba(15,26,16,0.92);
+  --nav:        rgba(22,32,24,0.96);
+  --card-hover: rgba(201,168,76,0.2);
+  --noise:      0.35;
+  --chart-grid: rgba(255,255,255,0.06);
+}
+[data-theme="light"] {
+  --bg:         #f2ede2;
+  --surface:    #faf6ed;
+  --surface2:   #f0ead8;
+  --surface3:   #e6dfc8;
+  --border:     rgba(0,0,0,0.09);
+  --border2:    rgba(0,0,0,0.05);
+  --text:       #28200e;
+  --text-dim:   #8a7850;
+  --text-mid:   #5a4a28;
+  --cream:      #28200e;
+  --cream-dim:  #6a5838;
+  --topbar:     rgba(230,224,208,0.96);
+  --nav:        rgba(240,234,218,0.97);
+  --card-hover: rgba(139,100,30,0.3);
+  --noise:      0.12;
+  --chart-grid: rgba(0,0,0,0.06);
+}
+
+/* shared */
+:root {
+  --brass:     #c9a84c;
+  --brass-dim: #7a6230;
+  --green-lit: #4a7a4e;
+  --r: 5px;
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition: background .3s, color .3s;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: var(--noise); transition: opacity .3s;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:3px; }
