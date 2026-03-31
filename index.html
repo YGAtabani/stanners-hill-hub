@@ -653,8 +653,75 @@ body::before {
   <div class="px pt24 mb16">
     <div class="g4 mb16" id="kpi-row"></div>
 
-    <!-- ROW 2: Budget donut + Bar chart + Right col -->
-    <div class="g3 top mb16">
+    <!-- DASHBOARD CARDS: 3-column masonry layout -->
+    <div class="dash-grid">
+
+      <!-- Col 1 -->
+      <div class="dash-col">
+        <div class="card">
+          <div class="ch"><h3>Budget by Category</h3></div>
+          <div class="cb">
+            <div style="display:flex;align-items:center;gap:18px">
+              <div class="chart-wrap" style="width:120px;height:120px;flex-shrink:0">
+                <canvas id="donutChart" width="120" height="120"></canvas>
+                <div class="chart-label"><div class="cv" id="budget-total"></div><div class="cl">total</div></div>
+              </div>
+              <div style="flex:1">
+                <div style="display:flex;flex-direction:column;gap:7px" id="budget-legend"></div>
+              </div>
+            </div>
+            <hr class="divl">
+            <div style="display:flex;flex-direction:column;gap:10px" id="spend-status"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h3>Systems Health</h3></div>
+          <div class="cb" id="systems-gauges"></div>
+        </div>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="dash-col">
+        <div class="card">
+          <div class="ch"><h3>Spend by Supplier</h3><span class="badge b-dim">Top 6</span></div>
+          <div class="cb">
+            <canvas id="barChart" height="200"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch">
+            <h3>This Month</h3>
+            <span style="font-family:'Playfair Display',serif;font-size:14px;color:var(--brass);font-style:italic;text-transform:none;letter-spacing:0" id="this-month-name"></span>
+          </div>
+          <div style="padding:12px 16px" id="this-month-tasks"></div>
+          <div style="padding:0 16px 14px">
+            <canvas id="monthTaskChart" height="80"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="dash-col">
+        <div class="card">
+          <div class="ch"><h3>Works Status</h3><span class="badge b-amber" id="works-count"></span></div>
+          <div class="cb0">
+            <table class="tbl">
+              <thead><tr><th>Item</th><th>Cost</th><th>Status</th></tr></thead>
+              <tbody id="works-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><h3>Estate Quick Facts</h3></div>
+          <div class="cb" style="padding:0 20px">
+            <ul class="rl" id="estate-facts"></ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dash-grid -->
+    <!-- OLD ROW 2 REMOVED - content moved to dash-grid above -->
+    <div style="display:none">
 
       <!-- Donut + spend breakdown -->
       <div class="card">
@@ -1742,32 +1809,38 @@ async function initApp() {
     }
   });
 
-  const monthCounts = [
-    thisMonth.tasks.filter(t => t.category === 'dg').length,
-    thisMonth.tasks.filter(t => t.category === 'dp').length,
-    thisMonth.tasks.filter(t => t.category === 'ds').length,
-    thisMonth.tasks.filter(t => t.category === 'dm').length,
-  ];
-  monthChart = new Chart(document.getElementById('monthTaskChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Garden', 'Pest', 'Systems', 'Maint'],
-      datasets: [{
-        data: monthCounts,
-        backgroundColor: ['rgba(74,122,78,0.7)', 'rgba(138,106,42,0.7)', 'rgba(58,122,138,0.7)', 'rgba(201,168,76,0.7)'],
-        borderColor: ['#4a7a4e', '#8a6a2a', '#3a7a8a', '#c9a84c'],
-        borderWidth: 1, borderRadius: 3,
-      }]
-    },
-    options: {
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + ' task' + (c.raw !== 1 ? 's' : '') } } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: getTextColor(), font: { size: 10 } } },
-        y: { grid: { color: getGridColor() }, ticks: { color: getTextColor(), stepSize: 1 }, border: { display: false } }
+  // ── MONTH TASK CHART (from live calendar data)
+  const monthChartCtx = document.getElementById('monthTaskChart');
+  if (monthChartCtx && calEvents) {
+    const mPrefix = now.getFullYear() + '-' + String(mi + 1).padStart(2, '0');
+    const mEvents = calEvents.filter(e => e.start.startsWith(mPrefix));
+    const catCounts = { dg: 0, dp: 0, ds: 0, dm: 0, other: 0 };
+    mEvents.forEach(e => { catCounts[e.category] = (catCounts[e.category] || 0) + 1; });
+    const catLabels = { dg: 'Garden', dp: 'Pest', ds: 'Systems', dm: 'Maintenance', other: 'Other' };
+    const catColors = { dg: 'rgba(74,122,78,0.7)', dp: 'rgba(138,106,42,0.7)', ds: 'rgba(58,122,138,0.7)', dm: 'rgba(201,168,76,0.7)', other: 'rgba(106,106,106,0.7)' };
+    const catBorders = { dg: '#4a7a4e', dp: '#8a6a2a', ds: '#3a7a8a', dm: '#c9a84c', other: '#6a6a6a' };
+    const cats = Object.keys(catCounts).filter(c => catCounts[c] > 0);
+    monthChart = new Chart(monthChartCtx, {
+      type: 'bar',
+      data: {
+        labels: cats.map(c => catLabels[c]),
+        datasets: [{
+          data: cats.map(c => catCounts[c]),
+          backgroundColor: cats.map(c => catColors[c]),
+          borderColor: cats.map(c => catBorders[c]),
+          borderWidth: 1, borderRadius: 3,
+        }]
       },
-      animation: { duration: 800 }
-    }
-  });
+      options: {
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + ' task' + (c.raw !== 1 ? 's' : '') } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: getTextColor(), font: { size: 10 } } },
+          y: { grid: { color: getGridColor() }, ticks: { color: getTextColor(), stepSize: 1 }, border: { display: false } }
+        },
+        animation: { duration: 800 }
+      }
+    });
+  }
 }
 
 // ── Launch
